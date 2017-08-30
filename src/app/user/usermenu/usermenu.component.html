@@ -1,0 +1,8 @@
+<div *ngIf="!(user | async)?.uid">
+  <a [routerLink]="['/user/login']">Login</a>
+  <a [routerLink]="['/user/register']">Register</a>
+</div>
+<div *ngIf="(user | async)?.uid">
+  Hi {{(user | async)?.email}}
+  <button (click)="logout()">Logout</button>
+</div>

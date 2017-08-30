@@ -1,8 +1,12 @@
+import { UserService } from './user.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
-  providers: []
+  providers: [
+    UserService
+  ]
 })
 export class CoreModule {
 
