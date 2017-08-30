@@ -5,6 +5,7 @@ import { UsermenuComponent } from './usermenu/usermenu.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,11 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     UserRoutingModule
   ],
-  declarations: [UsermenuComponent, LoginComponent],
+  declarations: [
+    UsermenuComponent,
+    LoginComponent,
+    RegisterComponent
+  ],
   exports: [
     UsermenuComponent
   ]
