@@ -1,5 +1,5 @@
 import { UsermenuComponent } from './../../user/usermenu/usermenu.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'dschool-header',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+
+  @Input()
+ schoolName: string;
 
   constructor() { }
 
