@@ -13,11 +13,15 @@ const routes: Routes = [
   {
     path: 'not-found',
     component: NotfoundComponent
+  },
+  {
+    path: 'home',
+    loadChildren: './home/home.module#HomeModule'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot( routes )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

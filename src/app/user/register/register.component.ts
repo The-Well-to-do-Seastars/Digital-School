@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../core/user.service';
 import { LoginData } from './../../shared/models/login';
 import { RegisterData } from './../../shared/models/register';
@@ -12,16 +13,20 @@ export class RegisterComponent implements OnInit {
 
   model = new RegisterData('', '', '');
   error: any;
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    const data = new LoginData( this.model.email, this.model.password )
+    const data = new LoginData( this.model.email, this.model.password );
     this.userService.register(this.model)
       .then( () => {
         this.error = false;
+        this.router.navigate(['/user/profile']);
       })
       .catch( (err) => {
         this.error = err.message;

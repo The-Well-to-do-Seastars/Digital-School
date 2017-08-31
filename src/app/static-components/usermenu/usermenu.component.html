@@ -1,6 +1,6 @@
 <ul class="navbar navbar-nav navbar-right" *ngIf="!(user | async)?.uid">
-  <li><a [routerLink]="['/user/login']"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-  <li><a [routerLink]="['/user/register']"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+  <li><a (click)="goto('login')"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+  <li><a (click)="goto('register')" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
 <ul class="navbar navbar-nav navbar-right" *ngIf="(user | async)?.uid">
   <p class="navbar-text">Hi {{(user | async)?.email}}</p>

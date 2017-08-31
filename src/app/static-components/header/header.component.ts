@@ -1,4 +1,4 @@
-import { UsermenuComponent } from './../../user/usermenu/usermenu.component';
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,11 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input()
- schoolName: string;
+  schoolName: string;
 
-  constructor() { }
+  constructor( private router: Router ) { }
 
   ngOnInit() {
   }
 
+  goto_Home() {
+    this.router.navigate( ['/home'] );
+  }
 }
