@@ -24,4 +24,8 @@ export class UserService {
     return this.afAuth.auth.createUserWithEmailAndPassword( data.email, data.password );
   }
 
+  currentUser(): firebase.User {
+    return this.afAuth.auth.currentUser;
+  }
+
 }

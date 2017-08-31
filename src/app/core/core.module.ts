@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth} from 'angularfire2/auth';
-
+import { ToasterService } from 'angular2-toaster';
 import { environment } from '../../environments/environment';
 
 @NgModule({
@@ -15,6 +15,7 @@ import { environment } from '../../environments/environment';
     UserService,
     AngularFireDatabase,
     AngularFireAuth,
+    ToasterService
   ]
 })
 export class CoreModule {

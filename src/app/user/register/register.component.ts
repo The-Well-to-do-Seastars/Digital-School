@@ -1,3 +1,4 @@
+import { ToasterService } from 'angular2-toaster';
 import { Router } from '@angular/router';
 import { UserService } from './../../core/user.service';
 import { LoginData } from './../../shared/models/login';
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   error: any;
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,8 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.model)
       .then( () => {
         this.error = false;
+        const username = this.userService.currentUser().displayName || this.userService.currentUser().email;
+        this.toasterService.pop('success', 'Welcome', username  );
         this.router.navigate(['/user/profile']);
       })
       .catch( (err) => {

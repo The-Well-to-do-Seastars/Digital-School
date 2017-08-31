@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsermenuComponent implements OnInit {
 
   user: any;
+
   constructor(
     private userService: UserService,
     private router: Router
@@ -18,6 +19,9 @@ export class UsermenuComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  get username(): string {
+    return this.userService.currentUser().displayName || this.userService.currentUser().email;
   }
 
   goto(subroute: string) {
