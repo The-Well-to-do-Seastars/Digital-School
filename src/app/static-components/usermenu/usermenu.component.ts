@@ -15,20 +15,27 @@ export class UsermenuComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.user = userService.user;
+    this.user = this.userService.currentUser.displayName;
   }
 
   ngOnInit() {
   }
   get username(): string {
-    return this.userService.currentUser().displayName || this.userService.currentUser().email;
+    return this.userService._currentUser.displayName;
+  }
+
+  get loggedIn() {
+    return this.userService.loggedIn;
   }
 
   goto(subroute: string) {
     this.router.navigate(['/user/' + subroute]);
   }
   logout() {
-    this.userService.logout();
+    this.userService.logout()
+      .then( () => {
+        this.router.navigate( ['/home'] );
+      });
   }
 
 }

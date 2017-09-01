@@ -1,8 +1,8 @@
-<ul class="navbar navbar-nav navbar-right" *ngIf="!(user | async)?.uid">
+<ul class="navbar navbar-nav navbar-right" [hidden]="loggedIn">
   <li><a (click)="goto('login')"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
   <li><a (click)="goto('register')" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
-<ul class="navbar navbar-nav navbar-right" *ngIf="(user | async)?.uid">
+<ul class="navbar navbar-nav navbar-right"  [hidden]="!loggedIn">
   <p class="navbar-text">Hi {{username}}</p>
   <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 </ul>

@@ -1,15 +1,37 @@
-import { Roles } from '../enums/roles.enum';
-
+import { Roles, Classes } from '../enums';
 export class UserData {
-      constructor(
-        public email: string,
-        public password: string,
+  public firstName: string;
+  public lastName: string;
+  public addmissionYear: number;
+  public class_number: Classes;
+  public role: Roles;
+  public uid: string;
+  constructor(
+    public userID: string = '',
+    public email: string = '',
 
-        public FirstName: string,
-        public LastName: string,
-        public year: number,
-        public class_number: number,
-        public role: Roles
-      ) {  }
+  ) {
+    this.uid = '';
+    this.firstName = '';
+    this.lastName = '';
+    this.addmissionYear = new Date().getFullYear();
+    this.class_number = Classes.a;
+    this.role = Roles.student;
+  }
 
+  get displayName(): string {
+    return ( this.firstName && this.lastName ) ? `${this.firstName} ${this.lastName}` : this.email;
+  }
+
+  static fromModel( model, target?: UserData ): UserData {
+    const user = target || new UserData();
+    for (const prop in user) {
+      if (user.hasOwnProperty(prop)) {
+        user[prop] = model[prop];
+      }
     }
+    user.uid = model.$key || model.uid;
+    return user;
+  }
+
+}

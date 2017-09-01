@@ -1,3 +1,53 @@
-<p>
-  profile works!
-</p>
+<div class="container" [hidden]="model.email">
+  <h3>Unathorized access!</h3>
+  Please <a href='/user/login'>log in</a> or <a href='/user/register'>register</a> !
+</div>
+<div class="container" [hidden]="!model.email">
+  <div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+  </div>
+  <form (ngSubmit)="onSubmit(firstName.value, lastName.value)" #profileForm="ngForm">
+    <div class="form-group">
+      <h4>You are registered with the following e-mail: {{model.email}}</h4>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [ngModel]="model.firstName" name="firstName" #firstName="ngModel">
+      <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+        First name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [ngModel]="model.lastName" name="lastName" #lastName="ngModel">
+      <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+        Last name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="addmissionYear">Addmission Year</label>
+      <select class="form-control" id="addmissionYear" required [(ngModel)]="model.addmissionYear" name="addmissionYear" #addmissionYear="ngModel">
+          <option *ngFor="let year of possibleYears" [value]="year">{{year}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select class="form-control" id="role" required [(ngModel)]="model.role" name="role" #role="ngModel">
+            <option *ngFor="let r of possibleRoles" [value]="r.value">{{r.name}}</option>
+        </select>
+    </div>
+
+    <div class="form-group" *ngIf="model.role==0">
+      <label for="class_number">Class</label>
+      <select class="form-control" id="class_number" required [(ngModel)]="model.class_number" name="class_number" #class_number="ngModel">
+            <option *ngFor="let number of possibleClasses" [value]="number.value">{{number.name}}</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!profileForm.form.valid">Submit</button>
+    
+  </form>
+</div>
