@@ -18,9 +18,20 @@ export class UserService {
     private afData: AngularFireDatabase
   ) {
     //this.user = afAuth.authState;
-    this.afAuth.auth.onAuthStateChanged((user) => {
+      this.afAuth.auth.onAuthStateChanged((user) => {
       this.loggedIn = user !== null;
-      const temp = this.currentUser;
+      // const temp = this.currentUser;
+      const fbUser = this.afAuth.auth.currentUser;
+      if (fbUser) {
+        this._currentUser.email = fbUser.email;
+        const userDetails = this.afData.list('users/', { query: { orderByChild: 'userID', equalTo: fbUser.uid } });
+        const newSubscription = userDetails.subscribe((snapshot) => {
+          this._currentUser = UserData.fromModel(snapshot[0], this._currentUser);
+        });
+        this.subscriptions.push(newSubscription);
+      } else {
+        this._currentUser = new UserData();
+      }
     });
   }
 
@@ -29,7 +40,7 @@ export class UserService {
   }
 
   logout(): firebase.Promise<any> {
-    this.subscriptions.forEach( (subscription) => subscription.unsubscribe() );
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
     return this.afAuth.auth.signOut();
   }
 
@@ -49,17 +60,6 @@ export class UserService {
   }
 
   get currentUser(): UserData {
-    const fbUser = this.afAuth.auth.currentUser;
-    if (fbUser) {
-      this._currentUser.email = fbUser.email;
-      const userDetails = this.afData.list('users/', { query: { orderByChild: 'userID', equalTo: fbUser.uid } });
-      const newSubscription = userDetails.subscribe((snapshot) => {
-        this._currentUser = UserData.fromModel( snapshot[0], this._currentUser );
-      });
-      this.subscriptions.push( newSubscription );
-    } else {
-      this._currentUser = new UserData();
-    }
     return this._currentUser;
   }
 

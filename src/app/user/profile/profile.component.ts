@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
     this.newInfo = UserData.fromModel( this.model );
     this.newInfo.firstName = firstName;
     this.newInfo.lastName = lastName;
-    console.log(this.newInfo);
     this.userService.updateUserInfo(this.newInfo)
       .then(() => {
         this.error = '';
