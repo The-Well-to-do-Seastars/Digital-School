@@ -1,8 +1,8 @@
 import { ToasterService } from 'angular2-toaster';
 import { UserService } from './../../core/user.service';
 import { Component, OnInit } from '@angular/core';
-import { UserData } from '../../shared/models';
-import { Classes, Roles } from '../../shared/enums';
+import { UserData, ValueNamePair } from '../../shared/models';
+import { Classes, Roles, SchoolYears } from '../../shared/enums';
 
 @Component({
   selector: 'dschool-profile',
@@ -14,8 +14,9 @@ export class ProfileComponent implements OnInit {
   model: UserData;
   newInfo: UserData;
   error: string;
-  possibleClasses: Array<{value: any, name: any }> = [];
-  possibleYears: Array<number> = [];
+  possibleClasses: Array<ValueNamePair> = [];
+  possibleYears: Array<ValueNamePair> = [];
+  possibleSchoolYears: Array<ValueNamePair> = SchoolYears.slice();
 
   possibleRoles: Array<{value: any, name: any }> = [];
   constructor(
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
     const starrtingYear = new Date().getFullYear();
     const possibleYears = [];
     for (let i = starrtingYear - 10; i <= starrtingYear; i += 1) {
-      this.possibleYears.push(i);
+      this.possibleYears.push( { value: i, name: i });
     }
   }
 

@@ -1,8 +1,8 @@
-<ul class="nav navbar-nav" *ngIf="!loggedIn">
+<ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
   <li><a (click)="goto('login')"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
   <li><a (click)="goto('register')" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
-<ul class="nav navbar-nav" *ngIf="loggedIn">
+<ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
       <span class="greeting">
@@ -10,7 +10,7 @@
       </span>
       <span class="caret"></span> 
     </a>
-    <ul class="dropdown-menu navbar navbar-inverse">
+    <ul class="dropdown-menu navbar-inverse">
       <li><a href="/user/profile">MY PROFILE</a></li>
       <li><a (click)="logout()">LOGOUT</a></li>
     </ul>

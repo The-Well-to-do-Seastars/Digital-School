@@ -4,6 +4,7 @@ export class UserData {
   public lastName: string;
   public addmissionYear: number;
   public class_number: Classes;
+  public shoolYear: number;
   public role: Roles;
   public uid: string;
   constructor(
@@ -17,6 +18,7 @@ export class UserData {
     this.addmissionYear = new Date().getFullYear();
     this.class_number = Classes.a;
     this.role = Roles.student;
+    this.shoolYear = 0;
   }
 
   get displayName(): string {
