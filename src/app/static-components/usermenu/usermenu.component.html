@@ -1,8 +1,18 @@
-<ul class="navbar navbar-nav navbar-right" [hidden]="loggedIn">
+<ul class="nav navbar-nav" *ngIf="!loggedIn">
   <li><a (click)="goto('login')"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
   <li><a (click)="goto('register')" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
-<ul class="navbar navbar-nav navbar-right"  [hidden]="!loggedIn">
-  <p class="navbar-text">Hi {{username}}</p>
-  <li><a (click)="logout()"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+<ul class="nav navbar-nav" *ngIf="loggedIn">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+      <span class="greeting">
+          Hi, {{username}}
+      </span>
+      <span class="caret"></span> 
+    </a>
+    <ul class="dropdown-menu navbar navbar-inverse">
+      <li><a href="/user/profile">MY PROFILE</a></li>
+      <li><a (click)="logout()">LOGOUT</a></li>
+    </ul>
+  </li>
 </ul>

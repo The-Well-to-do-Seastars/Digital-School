@@ -1,7 +1,7 @@
+import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserRoutingModule } from './user-routing.module';
-// import { UsermenuComponent } from './usermenu/usermenu.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,16 +12,15 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     CommonModule,
     FormsModule,
-    UserRoutingModule
+    UserRoutingModule,
+    SharedModule
   ],
   declarations: [
-    // UsermenuComponent,
     LoginComponent,
     RegisterComponent,
     ProfileComponent
   ],
   exports: [
-    // UsermenuComponent
   ]
 })
 export class UserModule { }

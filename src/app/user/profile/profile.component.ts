@@ -61,4 +61,8 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  get loggedIn() {
+    return this.userService.loggedIn;
+  }
+
 }

@@ -1,8 +1,5 @@
-<div class="container" [hidden]="model.email">
-  <h3>Unathorized access!</h3>
-  Please <a href='/user/login'>log in</a> or <a href='/user/register'>register</a> !
-</div>
-<div class="container" [hidden]="!model.email">
+<dschool-unauthorized [show]="!loggedIn"></dschool-unauthorized>
+<div class="container" *ngIf="loggedIn">
   <div class="alert alert-danger" [hidden]="!error">
     {{error}}
   </div>

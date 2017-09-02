@@ -1,0 +1,9 @@
+ul { 
+    padding-right: 20px;
+}
+ul.dropdown-menu {
+    position: absolute !important;
+}
+ul.dropdown-menu > li > a{
+    color: rgba(150, 150, 150, .8)
+}

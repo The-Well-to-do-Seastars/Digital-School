@@ -1,3 +1,4 @@
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,10 +11,11 @@ import { SharedRoutingModule } from './shared-routing.module';
     SharedRoutingModule,
     NgbModule
   ],
-  declarations: [ ],
+  declarations: [ UnauthorizedComponent ],
   exports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    UnauthorizedComponent
   ]
 })
 export class SharedModule { }
