@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
-  <li><a (click)="goto('login')"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-  <li><a (click)="goto('register')" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+  <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+  <li><a href="/user/register/" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
   <li class="dropdown">
