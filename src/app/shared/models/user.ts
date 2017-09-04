@@ -37,3 +37,17 @@ export class UserData {
   }
 
 }
+
+export class ShortUserData {
+  name: string;
+  uid: string;
+
+  constructor() {
+  }
+  static fromModel( model: UserData ) {
+    const user = new ShortUserData();
+    user.name = model.displayName;
+    user.uid = model.uid;
+    return user;
+  }
+}

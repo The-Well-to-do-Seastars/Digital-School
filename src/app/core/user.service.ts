@@ -17,10 +17,8 @@ export class UserService {
     private afAuth: AngularFireAuth,
     private afData: AngularFireDatabase
   ) {
-    //this.user = afAuth.authState;
       this.afAuth.auth.onAuthStateChanged((user) => {
       this.loggedIn = user !== null;
-      // const temp = this.currentUser;
       const fbUser = this.afAuth.auth.currentUser;
       if (fbUser) {
         this._currentUser.email = fbUser.email;

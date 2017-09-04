@@ -8,4 +8,8 @@ const SchoolYears: Array<ValueNamePair> = [
     {value: 4, name: 'XII'}
 ];
 
-export { SchoolYears };
+const GetSchoolYear = ( value ) => {
+    return SchoolYears[ SchoolYears.findIndex( (el) => el.value === value ) ].name;
+};
+
+export { SchoolYears, GetSchoolYear };

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { ListClassComponent } from './list-class/list-class.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import { SharedRoutingModule } from './shared-routing.module';
     SharedRoutingModule,
     NgbModule
   ],
-  declarations: [ UnauthorizedComponent ],
+  declarations: [ UnauthorizedComponent, ListClassComponent ],
   exports: [
     CommonModule,
     NgbModule,

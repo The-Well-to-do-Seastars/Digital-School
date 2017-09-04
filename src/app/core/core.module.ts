@@ -1,3 +1,5 @@
+import { StudentsService } from './students.service';
+import { ClassesService } from './classes.service';
 import { UserService } from './user.service';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +17,9 @@ import { environment } from '../../environments/environment';
     UserService,
     AngularFireDatabase,
     AngularFireAuth,
-    ToasterService
+    ToasterService,
+    ClassesService,
+    StudentsService
   ]
 })
 export class CoreModule {
