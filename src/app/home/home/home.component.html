@@ -1,3 +1,6 @@
-<p>
-  home works!
-</p>
+<div *ngFor="let new of news | async" class="container">
+  <div *ngIf="new.isHidden==false">
+  <h3 class="underlined">{{new.title}}</h3>
+  <p>{{new.content}}</p>
+  </div>
+</div>
