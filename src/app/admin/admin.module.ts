@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { GenerateClassComponent } from './generate-class/generate-class.component';
+import { AdminComponent } from './admin.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { GenerateClassComponent } from './generate-class/generate-class.componen
     FormsModule,
     SharedModule
   ],
-  declarations: [GenerateClassComponent]
+  declarations: [AdminComponent, GenerateClassComponent]
 })
 export class AdminModule { }
