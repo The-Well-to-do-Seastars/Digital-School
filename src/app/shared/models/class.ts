@@ -10,7 +10,7 @@ export class ClassData {
     }
 
     get displayName() {
-        return `${SchoolYears[this.schoolYear].name}<sup>${Classes[this.class_name]}</sup>`;
+        return `${SchoolYears[this.schoolYear].name} ${Classes[this.class_name]}`;
     }
     static fromModel(model) {
         const classData = new ClassData();
