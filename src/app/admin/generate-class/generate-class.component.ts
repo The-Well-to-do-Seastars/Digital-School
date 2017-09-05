@@ -1,4 +1,10 @@
+import { ToasterService } from 'angular2-toaster';
+import { ClassesService } from './../../core/classes.service';
+import { ClassData } from './../../shared/models/class';
+import { TeachersService } from './../../core/teachers.service';
 import { ShortUserData } from './../../shared/models/user';
+import { ShortListUserData } from './../../shared/models';
+import { SchoolYears, possibleClasses, Classes } from './../../shared/enums';
 import { StudentsService } from './../../core/students.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,18 +15,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerateClassComponent implements OnInit {
 
-  students: Array<ShortUserData>;
+  students: Array<ShortListUserData>;
+  teachers: Array<ShortUserData>;
+  classData = { shoolYear: 0, classNumber: 0 };
+  selectedTeacher: ShortUserData;
+  error;
+
+  possibleSchoolYears = SchoolYears.slice();
+  possibleClasses = possibleClasses();
 
   constructor(
-    private studentService: StudentsService
+    private studentService: StudentsService,
+    private teachersService: TeachersService,
+    private classesService: ClassesService,
+    private toasterService: ToasterService
   ) { }
 
   ngOnInit() {
-    this.students = this.studentService.getStudentsFromClass( 2, 0 );
+    this.teachers = this.teachersService.getAllTeachers();
   }
 
-  test() {
-    console.log( this.students );
+  getStudents() {
+    this.students = this.studentService.getStudentsFromClass(this.classData.shoolYear, this.classData.classNumber);
   }
 
+  onTeacherChange(uid: string) {
+    this.selectedTeacher = this.teachers[this.teachers.findIndex((el) => el.uid === uid)];
+  }
+  generate() {
+    const classData = new ClassData();
+    classData.leadTeacher = this.selectedTeacher;
+    classData.schoolYear = this.classData.shoolYear;
+    classData.class_name = this.classData.shoolYear;
+    classData.students = this.students
+      .filter((student) => student.include)
+      .map((student) => new ShortUserData(student));
+    this.classesService.createClass(classData)
+      .then(() => {
+        this.error = false;
+        this.toasterService.pop('success', `Class ${classData.displayName} successfully created!`);
+      })
+      .catch((err) => {
+        this.error = err.message;
+      });
+  }
 }

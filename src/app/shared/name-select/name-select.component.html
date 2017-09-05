@@ -1,0 +1,8 @@
+<form>
+  <div class="form-group">
+    <label for="select">{{title}}</label>
+    <select class="form-control" id="select" [(ngModel)]="selected" name="select">
+              <option *ngFor="let user of users" [value]="user.uid">{{user.name}}</option>
+          </select>
+  </div>
+</form>

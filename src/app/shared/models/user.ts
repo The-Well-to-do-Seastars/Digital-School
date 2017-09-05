@@ -42,12 +42,27 @@ export class ShortUserData {
   name: string;
   uid: string;
 
-  constructor() {
+  constructor(model?) {
+    if (model) {
+      this.name = model.name;
+      this.uid = model.uid;
+    }
   }
   static fromModel( model: UserData ) {
     const user = new ShortUserData();
     user.name = model.displayName;
     user.uid = model.uid;
     return user;
+  }
+}
+
+export class ShortListUserData extends ShortUserData {
+  include: boolean;
+
+  constructor(user: ShortUserData, includeDefault = true) {
+    super();
+    this.name = user.name;
+    this.uid = user.uid;
+    this.include = includeDefault;
   }
 }

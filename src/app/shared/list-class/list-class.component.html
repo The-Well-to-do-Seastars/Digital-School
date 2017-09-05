@@ -1,3 +1,17 @@
-<p>
-  list-class works!
-</p>
+<div class="row" *ngIf="type==='short'">
+    <div class="col-sm-8">
+        <strong>Name</strong>
+    </div>
+    <div class="col-sm-3">
+        <strong>User uid</strong>
+    </div> 
+    <div class="col-sm-1">
+        <strong>Include</strong>
+    </div> 
+  </div>
+<div *ngIf="!students || !students.length">
+  Nothing to show...
+</div>
+<div *ngFor="let student of students">
+  <dschool-short-list-row *ngIf="type==='short'" [student]="student"></dschool-short-list-row>
+</div>

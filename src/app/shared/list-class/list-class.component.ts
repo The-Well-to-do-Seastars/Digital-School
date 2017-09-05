@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'dschool-list-class',
@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListClassComponent implements OnInit {
 
+  @Input()
+  students;
+
+  @Input()
+  type: string;
   constructor() { }
 
   ngOnInit() {

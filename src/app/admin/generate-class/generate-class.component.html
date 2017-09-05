@@ -1,10 +1,26 @@
-<p>
-  generate-class works!
-</p>
-
-<div *ngFor="let student of students">
-  <h4>{{student.name}}</h4>
-  <span>{{student.uid}}</span>
+<div class="alert alert-danger" [hidden]="!error">
+    {{error}}
 </div>
+<dschool-name-select [users]="teachers" [title]="'Class Master'" (change)="onTeacherChange($event.target.value)"></dschool-name-select>
+<form (ngSubmit)="getStudents()">
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="shoolYear">Year</label>
+      <select class="form-control" id="shoolYear" required [(ngModel)]="classData.shoolYear" name="shoolYear">
+            <option *ngFor="let year of possibleSchoolYears" [value]="year.value">{{year.name}}</option>
+        </select>
+    </div>
 
-<button (click)="test()">Test</button>
+    <div class="form-group col-sm-6">
+      <label for="class_number">Class</label>
+      <select class="form-control" id="class_number" required [(ngModel)]="classData.classNumber" name="class_number">
+            <option *ngFor="let number of possibleClasses" [value]="number.value">{{number.name}}</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-2">
+      <button type="submit" class="btn btn-success">Get Students</button>
+    </div>
+  </div>
+</form>
+<dschool-list-class [students]="students" [type]="'short'"></dschool-list-class>
+<button class="btn btn-success" (click)="generate()">Generate</button>

@@ -2,7 +2,7 @@ import { ToasterService } from 'angular2-toaster';
 import { UserService } from './../../core/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserData, ValueNamePair } from '../../shared/models';
-import { Classes, Roles, SchoolYears } from '../../shared/enums';
+import { Classes, Roles, SchoolYears, possibleClasses } from '../../shared/enums';
 
 @Component({
   selector: 'dschool-profile',
@@ -24,11 +24,7 @@ export class ProfileComponent implements OnInit {
     private toasterService: ToasterService
   ) {
 
-    for (const c in Classes) {
-      if (Classes.hasOwnProperty(c) && isNaN(Number(c))) {
-        this.possibleClasses.push({ value: Classes[c], name: c });
-      }
-    }
+    this.possibleClasses = possibleClasses();
 
     for (const r in Roles) {
       if (Roles.hasOwnProperty(r) && isNaN(Number(r))) {

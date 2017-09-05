@@ -16,11 +16,15 @@ export class ClassesService {
 
   getClass( schoolYear: number, classNumber: Classes ) {
     const year = GetSchoolYear( schoolYear );
-    const classData = this.afData.list('/classes', { query: { orderByChild: 'class', equalTo: `${year}${classNumber}` } } );
+    const classData = this.afData.list('classes/', { query: { orderByChild: 'class', equalTo: `${year}${classNumber}` } } );
     const newSubscription = classData.subscribe( (snapshot) => {
       return ClassData.fromModel( snapshot[0] );
     } );
     this.subscriptions.push( newSubscription );
+  }
+
+  createClass(model) {
+    return this.afData.list( 'classes/' ).push( model );
   }
 
 }
