@@ -1,3 +1,4 @@
+import { AdminGuardService } from './core/guards/admin-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotfoundComponent } from './static-components/notfound/notfound.component';
@@ -19,7 +20,9 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomeModule'
   },
   { path: 'admin',
-    loadChildren: './admin/admin.module.ts#AdminModule'
+    loadChildren: './admin/admin.module.ts#AdminModule',
+    canActivate: [AdminGuardService],
+    canActivateChild: [AdminGuardService]
   }
 ];
 

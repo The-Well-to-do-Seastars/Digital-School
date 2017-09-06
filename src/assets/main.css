@@ -1,6 +1,11 @@
 body { padding-top: 70px; }
 
-ul.dropdown-menu > li > a{
+ul.dropdown-menu > li > a {
+    color: rgba(150, 150, 150, .8);
+    cursor: pointer;
+}
+
+ul.nav > li > a {
     color: rgba(150, 150, 150, .8);
     cursor: pointer;
 }

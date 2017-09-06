@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { UsermenuComponent } from './usermenu/usermenu.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -8,7 +9,8 @@ import { ToasterModule } from 'angular2-toaster';
 @NgModule({
   imports: [
     CommonModule,
-    ToasterModule
+    ToasterModule,
+    RouterModule
   ],
   declarations: [
     HeaderComponent,

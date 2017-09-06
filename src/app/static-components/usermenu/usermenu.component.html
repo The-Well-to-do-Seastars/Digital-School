@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
-  <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-  <li><a href="/user/register/" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+  <li><a [routerLink]="['user/login']"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+  <li><a [routerLink]="['user/register']"><span class="glyphicon glyphicon-user"></span>Register</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
   <li class="dropdown">
@@ -11,7 +11,7 @@
       <span class="caret"></span> 
     </a>
     <ul class="dropdown-menu navbar-inverse">
-      <li><a href="/user/profile">MY PROFILE</a></li>
+      <li><a [routerLink]="['user/profile']">MY PROFILE</a></li>
       <li><a (click)="logout()">LOGOUT</a></li>
     </ul>
   </li>
