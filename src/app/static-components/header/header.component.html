@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/home']">{{schoolName}}</a>
         </div>
-        <ul class="nav navbar-nav" *ngIf="user.role===admin">
+        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin"> 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Classes
                         <span class="caret"></span></a>

@@ -5,22 +5,19 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/Observable/of';
 import { Subscription } from 'rxjs/Subscription';
-
-let count = 0;
 
 @Injectable()
 export class UserService {
 
   _currentUser = new UserData();
-  afAuthUser;
-  subscriptions: Array<Subscription> = [];
+  userRole: number;
   loggedIn: boolean;
   constructor(
     private afAuth: AngularFireAuth,
     private afData: AngularFireDatabase
   ) {
-      console.log('refresh' + count++);
       this.afAuth.auth.onAuthStateChanged((user) => {
       this.loggedIn = user !== null;
       if (user) {
@@ -33,6 +30,7 @@ export class UserService {
       } else {
         this._currentUser = new UserData();
       }
+      this.userRole = this._currentUser.role;
     });
   }
 

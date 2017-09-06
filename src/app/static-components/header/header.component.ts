@@ -13,15 +13,12 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   schoolName: string;
-
-  user: UserData;
   admin = Roles.administrator.toString();
 
   constructor(
     private router: Router,
     private userService: UserService
   ) {
-    this.user = this.userService.currentUser;
   }
 
   ngOnInit() {
