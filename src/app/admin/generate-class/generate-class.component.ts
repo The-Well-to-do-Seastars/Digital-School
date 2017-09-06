@@ -1,9 +1,10 @@
+import { UserService } from './../../core/user.service';
 import { ToasterService } from 'angular2-toaster';
 import { ClassesService } from './../../core/classes.service';
 import { ClassData } from './../../shared/models/class';
 import { TeachersService } from './../../core/teachers.service';
 import { ShortUserData } from './../../shared/models/user';
-import { ShortListUserData } from './../../shared/models';
+import { ShortListUserData, UserData } from './../../shared/models';
 import { SchoolYears, possibleClasses, Classes } from './../../shared/enums';
 import { StudentsService } from './../../core/students.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,19 +21,23 @@ export class GenerateClassComponent implements OnInit {
   classData = { shoolYear: 0, classNumber: 0 };
   selectedTeacher: ShortUserData;
   error;
-
   possibleSchoolYears = SchoolYears.slice();
   possibleClasses = possibleClasses();
+  user: UserData;
 
   constructor(
     private studentService: StudentsService,
     private teachersService: TeachersService,
     private classesService: ClassesService,
-    private toasterService: ToasterService
-  ) { }
+    private toasterService: ToasterService,
+    private userService: UserService
+  ) {
+    this.teachers = this.teachersService.getAllTeachers();
+    this.user = this.userService.currentUser;
+  }
 
   ngOnInit() {
-    this.teachers = this.teachersService.getAllTeachers();
+
   }
 
   getStudents() {
@@ -59,4 +64,5 @@ export class GenerateClassComponent implements OnInit {
         this.error = err.message;
       });
   }
+
 }

@@ -1,3 +1,6 @@
+import { UserService } from './../../core/user.service';
+import { UserData } from './../../shared/models';
+import { Roles } from './../../shared/enums';
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -11,7 +14,15 @@ export class HeaderComponent implements OnInit {
   @Input()
   schoolName: string;
 
-  constructor( private router: Router ) { }
+  user: UserData;
+  admin = Roles.administrator.toString();
+
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) {
+    this.user = this.userService.currentUser;
+  }
 
   ngOnInit() {
   }

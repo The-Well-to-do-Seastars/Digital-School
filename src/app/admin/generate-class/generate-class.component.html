@@ -1,8 +1,8 @@
-
+<dschool-unauthorized [show]="user.role!=2"></dschool-unauthorized>
 <div class="alert alert-danger" [hidden]="!error">
   {{error}}
 </div>
-<form class="container" (ngSubmit)="getStudents()">
+<form class="container" (ngSubmit)="getStudents()" *ngIf="user.role==2">
   <div class="row">
     <dschool-name-select [users]="teachers" [title]="'Class Master'" (change)="onTeacherChange($event.target.value)">
     </dschool-name-select>
