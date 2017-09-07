@@ -1,16 +1,15 @@
 <div class="container">
   <div col-md-12>
-      <form [formGroup]="addNewsForm" (ngSubmit)="add(addNewsForm.value)" #addNewsForm=ngForm novalidate>
+      <form [formGroup]="addNewsForm" (ngSubmit)="add()" novalidate>
           <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" name="title" formControlName="title" required>
+              <input type="text" name="title" class="form-control"formControlName="title" required>
           </div>
           <div class="form-group">
               <label for="content">Content</label>
-              <input type="text" name="content" formControlName="content" required>
+              <textarea type="text" name="content" class="form-control" formControlName="content" required></textarea>
           </div>
-          <input type="submit" >
+          <input class="btn btn-success" type="submit" >
       </form>
   </div>
-  
 </div>
