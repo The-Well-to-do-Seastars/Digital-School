@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,13 +11,20 @@ export class AddNewsComponent implements OnInit {
   public addNewsForm: FormGroup;
 
   constructor() { }
-  add(value) {
-    console.log('add');
+  onSubmit(value) {
+    console.log(this.addNewsForm);
+  }
+
+  showValidationMessades() {
+    console.log('Here')
+    for (var key in this.addNewsForm.controls) {
+      this.addNewsForm.controls[key].markAsTouched();
+    }
   }
   
   ngOnInit() {
-    const title = new FormControl('');
-    const content = new FormControl('');
+    const title = new FormControl(null, Validators.required);
+    const content = new FormControl(null, Validators.required);
 
     this.addNewsForm = new FormGroup({
       title: title,
