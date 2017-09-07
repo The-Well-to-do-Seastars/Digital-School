@@ -18,12 +18,10 @@ export class AddNewsComponent implements OnInit {
     const newsArticle: NewsArticle = new NewsArticle();
     newsArticle.content = this.addNewsForm.controls['content'].value;
     newsArticle.title = this.addNewsForm.controls['title'].value;
-    newsArticle.createdOn = new Date();
     this.newsService.createNews(newsArticle);
   }
 
   showValidationMessades() {
-    console.log('Here')
     for (var key in this.addNewsForm.controls) {
       this.addNewsForm.controls[key].markAsTouched();
     }

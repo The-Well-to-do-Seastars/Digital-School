@@ -1,13 +1,14 @@
 export class NewsArticle {
-    public createdOn: Date;
+    public createdOn: number;
 
     public uid: string;
 
     constructor(
         public title: string = '',
-        public content: string = ''
+        public content: string = '',
+        public isHidden: boolean = false
     ) {
-        this.createdOn = new Date();
+        this.createdOn = Date.now();
     }
 
     static fromModel( model, target?: NewsArticle ): NewsArticle {
