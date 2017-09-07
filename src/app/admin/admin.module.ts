@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { GenerateClassComponent } from './generate-class/generate-class.component';
 import { AdminComponent } from './admin.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ import { AdminComponent } from './admin.component';
     FormsModule,
     SharedModule
   ],
-  declarations: [AdminComponent, GenerateClassComponent]
+  declarations: [AdminComponent, GenerateClassComponent, CreateCourseComponent, EditCourseComponent]
 })
 export class AdminModule { }

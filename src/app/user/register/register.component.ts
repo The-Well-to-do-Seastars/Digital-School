@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.userService.register(this.model)
       .then( () => {
         this.error = false;
-        this.toasterService.pop('success', 'Welcome', this.userService.currentUser.displayName  );
+        this.toasterService.pop('success', 'Welcome' );
         this.router.navigate(['/user/profile']);
       })
       .catch( (err) => {

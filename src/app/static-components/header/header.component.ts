@@ -13,11 +13,11 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   schoolName: string;
-  admin = Roles.administrator.toString();
+  admin: any = Roles.administrator.toString();
 
   constructor(
     private router: Router,
-    private userService: UserService
+    public userService: UserService
   ) {
   }
 

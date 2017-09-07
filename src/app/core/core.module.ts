@@ -1,3 +1,4 @@
+import { CoursesService } from './courses.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { TeachersService } from './teachers.service';
 import { StudentsService } from './students.service';
@@ -23,7 +24,8 @@ import { environment } from '../../environments/environment';
     ClassesService,
     StudentsService,
     TeachersService,
-    AdminGuardService
+    AdminGuardService,
+    CoursesService
   ]
 })
 export class CoreModule {

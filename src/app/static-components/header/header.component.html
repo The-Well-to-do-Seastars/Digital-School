@@ -8,12 +8,20 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Classes
                         <span class="caret"></span></a>
                 <ul class="dropdown-menu navbar-inverse">
-                    <li><a [routerLink]="['/admin/generate_class']">GNERATE</a></li>
-                    <!-- <li><a href="#">Page 1-2</a></li>
-                    <li><a href="#">Page 1-3</a></li> -->
+                    <li><a [routerLink]="['/admin/class/create']">GNERATE</a></li>
                 </ul>
             </li>
         </ul>
+        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin"> 
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Courses
+                            <span class="caret"></span></a>
+                    <ul class="dropdown-menu navbar-inverse">
+                            <li><a [routerLink]="['/admin/course/create']">CREATE</a></li>
+                            <li><a [routerLink]="['/admin/course/edit']">EDIT</a></li>
+                        </ul>
+                </li>
+            </ul>
         <dschool-usermenu class="navbar navbar-nav navbar-right"></dschool-usermenu>
     </div>
 </nav>

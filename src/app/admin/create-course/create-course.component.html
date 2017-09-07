@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="alert alert-danger" [hidden]="!error">
+      {{error}}
+    </div>
+    <form (ngSubmit)="onSubmit()" #courseForm="ngForm">
+      <div class="form-group">
+        <label for="email">Course name</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel"
+               placeholder="Angular4">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Course name is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success pull-right" [disabled]="!courseForm.form.valid">Create</button>
+
+    </form>
+</div>

@@ -1,3 +1,4 @@
+import { CourseData } from './../models/course';
 import { ShortUserData } from './../models/user';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NameSelectComponent implements OnInit {
 
   @Input()
-  users: Array<ShortUserData>;
+  users: Array<ShortUserData> | Array<CourseData>;
   @Input()
   title: string;
   selected;
