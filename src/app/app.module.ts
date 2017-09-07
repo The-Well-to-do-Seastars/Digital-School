@@ -1,3 +1,4 @@
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StaticComponentsModule } from './static-components/static-components.module';
 import { NotfoundComponent } from './static-components/notfound/notfound.component';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -32,7 +33,9 @@ import { AppComponent } from './app.component';
     SharedModule,
     CoreModule,
     CommonModule,
-    StaticComponentsModule
+    StaticComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
   ],
