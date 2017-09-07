@@ -7,7 +7,6 @@ export class NewsArticle {
         public title: string = '',
         public content: string = ''
     ) {
-        this.uid = '';
         this.createdOn = new Date();
     }
 
@@ -18,7 +17,6 @@ export class NewsArticle {
             article[prop] = model[prop];
           }
         }
-        article.uid = model.$key || model.uid;
         return article;
       }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { NewsArticle } from './../../shared/models/news-article';
+import { NewsService } from './../../core/news.service';
+import { Component, OnInit, SkipSelf } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -10,9 +12,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AddNewsComponent implements OnInit {
   public addNewsForm: FormGroup;
 
-  constructor() { }
-  onSubmit(value) {
-    console.log(this.addNewsForm);
+  constructor(private newsService: NewsService) { }
+
+  onSubmit() {
+    const newsArticle: NewsArticle = new NewsArticle();
+    newsArticle.content = this.addNewsForm.controls['content'].value;
+    newsArticle.title = this.addNewsForm.controls['title'].value;
+    newsArticle.createdOn = new Date();
+    this.newsService.createNews(newsArticle);
   }
 
   showValidationMessades() {

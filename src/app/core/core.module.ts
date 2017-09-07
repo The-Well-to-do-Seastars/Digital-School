@@ -1,3 +1,4 @@
+import { NewsService } from './news.service';
 import { TeachersService } from './teachers.service';
 import { StudentsService } from './students.service';
 import { ClassesService } from './classes.service';
@@ -21,7 +22,8 @@ import { environment } from '../../environments/environment';
     ToasterService,
     ClassesService,
     StudentsService,
-    TeachersService
+    TeachersService,
+    NewsService
   ]
 })
 export class CoreModule {
