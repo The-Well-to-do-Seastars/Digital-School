@@ -4,7 +4,7 @@
   </div>
   <form (ngSubmit)="onSubmit()" #editClassForm="ngForm">
     <div class="row">
-      <div class="form-group">
+      <div class="form-group name-group">
         <label for="name">Course Name</label>
         <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
@@ -14,11 +14,15 @@
     </div>
 
     <div class="row">
-      <div class="form-group col-sm-6">
-        <dschool-multy-select [choices]="possibleYears" [selection]="model.schoolYears"></dschool-multy-select>
+      <div class="form-group col-sm-8">
+        <dschool-multy-select [choices]="possibleTeachers" [selection]="model.teachers" [title]="'Teachers'"></dschool-multy-select>
+      </div>
+      <div class="form-group col-sm-4">
+        <dschool-multy-select [choices]="possibleYears" [selection]="model.schoolYears" [title]="'Classes'"></dschool-multy-select>
       </div>
     </div>
-    <button type="submit" class="btn btn-success" [disabled]="!editClassForm.form.valid">Submit</button>
-
+    <div class="row">
+      <button type="submit" class="btn btn-success pull-right" [disabled]="!editClassForm.form.valid">Update</button>
+    </div>
   </form>
 </div>

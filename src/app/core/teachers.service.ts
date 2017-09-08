@@ -1,7 +1,8 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { ShortUserData, UserData } from '../shared/models';
+import { ShortUserData, UserData, TeacherData } from '../shared/models';
 import { Roles } from '../shared/enums';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class TeachersService {
@@ -10,16 +11,45 @@ export class TeachersService {
     private afData: AngularFireDatabase
   ) { }
 
-  getAllTeachers(): Array<ShortUserData> {
-    const teachers = [];
-    const classData = this.afData.list('users/', { query: { orderByChild: 'role', equalTo: Roles.teacher.toString() } } );
-    const newSubscription = classData.subscribe( (snapshot) => {
-      snapshot.forEach( (child) => {
-        const student = UserData.fromModel( child );
-          teachers.push( ShortUserData.fromModel( student ) );
+  getAllTeachers(): firebase.Promise<any> {
+    const query = firebase.database().ref('users').orderByChild('role').equalTo(Roles.teacher.toString());
+    return query.once('value')
+      .then((snapshot) => {
+        const teachers = [];
+        snapshot.forEach(child => {
+          const childData = child.val();
+          const teacher = ShortUserData.fromModel(UserData.fromModel(childData));
+          teacher.uid = child.key;
+          teachers.push(teacher);
+        });
+        return Promise.resolve(teachers);
+      })
+      .catch(err => {
+        return Promise.reject(err);
       });
-      newSubscription.unsubscribe();
-    } );
-    return teachers;
+  }
+
+  getById(uid): firebase.Promise<any> {
+    const query = firebase.database().ref('users').orderByKey().equalTo(uid);
+    return query.once('value')
+      .then((snapshot) => {
+        let teacher;
+        snapshot.forEach(child => {
+          const childData = child.val();
+          teacher = TeacherData.fromModel(childData);
+          teacher.uid = child.key;
+        });
+        return Promise.resolve(teacher);
+      })
+      .catch(err => {
+        return Promise.reject(err);
+      });
+  }
+
+  update( model ) {
+    return this.afData.list('/users').update(model.uid, model);
   }
 }
+
+
+

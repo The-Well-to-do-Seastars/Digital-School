@@ -1,21 +1,30 @@
 import { ShortUserData } from './../models';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'dschool-multy-select',
   templateUrl: './multy-select.component.html',
   styleUrls: ['./multy-select.component.css']
 })
-export class MultySelectComponent implements OnInit {
+export class MultySelectComponent implements OnInit, OnChanges {
 
   @Input()
   choices: Array<ShortUserData>;
   @Input()
   selection: Array<ShortUserData>;
+  @Input()
+  title: string;
   selectedChoice: ShortUserData;
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {}
+  ngOnInit(): void {
+  }
+  ngOnChanges() {
+    this.selection.forEach( selected => {
+      const index = this.choices.findIndex( el => el.uid === selected.uid );
+      if ( index !== -1 ) {
+        this.choices.splice( index, 1 );
+      }
+    });
   }
 
   onSelectChange(value) {
@@ -38,6 +47,7 @@ export class MultySelectComponent implements OnInit {
     this.selection.splice( removeIndex, 1 );
     this.choices.push( choice );
     this.choices = this.choices.sort( ( x, y ) => parseInt( x.uid, 10 ) - parseInt( y.uid, 10 ) );
+    this.selectedChoice = this.selectedChoice || choice;
   }
 
 }

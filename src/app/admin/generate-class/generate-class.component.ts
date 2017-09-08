@@ -32,7 +32,11 @@ export class GenerateClassComponent implements OnInit {
     private toasterService: ToasterService,
     private userService: UserService
   ) {
-    this.teachers = this.teachersService.getAllTeachers();
+    this.teachersService
+      .getAllTeachers()
+      .then( (teachers) => {
+        this.teachers = teachers;
+      });
     this.user = this.userService.currentUser;
   }
 

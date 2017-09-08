@@ -1,4 +1,5 @@
 import { Roles, Classes } from '../enums';
+import { isArray } from './../utils/isArray';
 export class UserData {
   public firstName: string;
   public lastName: string;
@@ -22,10 +23,10 @@ export class UserData {
   }
 
   get displayName(): string {
-    return ( this.firstName && this.lastName ) ? `${this.firstName} ${this.lastName}` : this.email;
+    return (this.firstName && this.lastName) ? `${this.firstName} ${this.lastName}` : this.email;
   }
 
-  static fromModel( model, target?: UserData ): UserData {
+  static fromModel(model, target?: UserData): UserData {
     const user = target || new UserData();
     for (const prop in user) {
       if (user.hasOwnProperty(prop)) {
@@ -48,7 +49,7 @@ export class ShortUserData {
       this.uid = model.uid;
     }
   }
-  static fromModel( model: UserData ) {
+  static fromModel(model: UserData) {
     const user = new ShortUserData();
     user.name = model.displayName;
     user.uid = model.uid;
@@ -64,5 +65,26 @@ export class ShortListUserData extends ShortUserData {
     this.name = user.name;
     this.uid = user.uid;
     this.include = includeDefault;
+  }
+}
+export class TeacherData extends UserData {
+  courses: Array<ShortUserData>;
+  constructor() {
+    super();
+    this.courses = [];
+  }
+
+  static fromModel(model, target?: TeacherData): TeacherData {
+    const teacher = target || new TeacherData();
+    for (const prop in teacher) {
+      if (teacher.hasOwnProperty(prop)) {
+        teacher[prop] = model[prop];
+        if (isArray(teacher[prop])) {
+          teacher[prop] = teacher[prop].slice();
+        }
+      }
+    }
+    teacher.uid = model.$key || model.uid;
+    return teacher;
   }
 }
