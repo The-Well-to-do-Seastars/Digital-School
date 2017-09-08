@@ -7,7 +7,7 @@ export class NewsService {
 
   constructor(private afData: AngularFireDatabase) { }
 
-  createNews(model){
+  createNews(model) {
     return this.afData.list('news/').push(model);
   }
 
