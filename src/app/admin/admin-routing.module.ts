@@ -1,3 +1,4 @@
+import { CourseDetailsComponent } from './course-details/course-details.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { AdminComponent } from './admin.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'home', component: AdminComponent },
   { path: 'course', children: [
     { path: 'create', component: CreateCourseComponent },
-    { path: 'edit', component: EditCourseComponent }
+    { path: 'edit', component: EditCourseComponent },
+    { path: 'edit/:uid', component: CourseDetailsComponent },
   ]}
 ];
 

@@ -1,0 +1,17 @@
+<div class="row">
+  <dschool-name-select [title]="'Classes'" [users]="choices" (change)="onSelectChange($event.target.value)"></dschool-name-select>
+</div>
+<div class="row">
+  <a class="btn btn-success pull-right" (click)="addSelection()">Add</a>
+</div>
+<div class="form-group table">
+  <label for="table">Selected</label>
+  <div class="row" name="table" *ngIf="selection.length === 0">
+    <div class="table-row row">
+      <strong>Nothing to show...</strong>
+    </div>
+  </div>
+  <div class="row" name="table">
+    <dschool-multy-select-line *ngFor="let choice of selection" [choice]="choice" (onRemove)="remove($event)"></dschool-multy-select-line>
+  </div>
+</div>

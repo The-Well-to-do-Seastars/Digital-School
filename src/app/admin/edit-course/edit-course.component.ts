@@ -26,6 +26,6 @@ export class EditCourseComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate( ['/admin/course/edit/' + this.selected ]);
+    this.router.navigate( ['/admin/course/edit/', this.selected ]);
   }
 }

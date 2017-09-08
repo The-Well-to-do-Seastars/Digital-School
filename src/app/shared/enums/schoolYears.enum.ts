@@ -2,10 +2,11 @@ import { ValueNamePair } from './../models/custom-types';
 
 const SchoolYears: Array<ValueNamePair> = [
     {value: 0, name: 'VII'},
-    {value: 1, name: 'IX'},
-    {value: 2, name: 'X'},
-    {value: 3, name: 'XI'},
-    {value: 4, name: 'XII'}
+    {value: 1, name: 'VIII'},
+    {value: 2, name: 'IX'},
+    {value: 3, name: 'X'},
+    {value: 4, name: 'XI'},
+    {value: 5, name: 'XII'}
 ];
 
 const GetSchoolYear = ( value ) => {

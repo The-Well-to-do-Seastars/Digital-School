@@ -1,12 +1,12 @@
 import { ShortUserData } from './user';
 export class CourseData {
     name: string;
-    schoolYaears: Array<number>;
+    schoolYears: Array<number>;
     teachers: Array<ShortUserData>;
     uid: string;
     constructor() {
         this.name = '';
-        this.schoolYaears = [];
+        this.schoolYears = [];
         this.teachers = [];
     }
     static fromModel( model, target?: CourseData ): CourseData {

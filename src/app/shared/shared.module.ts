@@ -8,6 +8,8 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { ListClassComponent } from './list-class/list-class.component';
 import { ShortListRowComponent } from './short-list-row/short-list-row.component';
 import { NameSelectComponent } from './name-select/name-select.component';
+import { MultySelectComponent } from './multy-select/multy-select.component';
+import { MultySelectLineComponent } from './multy-select-line/multy-select-line.component';
 
 @NgModule({
   imports: [
@@ -16,13 +18,20 @@ import { NameSelectComponent } from './name-select/name-select.component';
     FormsModule,
     NgbModule
   ],
-  declarations: [ UnauthorizedComponent, ListClassComponent, ShortListRowComponent, NameSelectComponent ],
+  declarations: [
+    UnauthorizedComponent,
+    ListClassComponent,
+    ShortListRowComponent,
+    NameSelectComponent,
+    MultySelectComponent,
+    MultySelectLineComponent ],
   exports: [
     CommonModule,
     NgbModule,
     UnauthorizedComponent,
     ListClassComponent,
-    NameSelectComponent
+    NameSelectComponent,
+    MultySelectComponent
   ]
 })
 export class SharedModule { }
