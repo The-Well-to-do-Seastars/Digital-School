@@ -107,16 +107,12 @@ export class TeachersService {
         removeClasses = removeClasses.concat(toAdd);
       });
     }
-    console.log('------------');
-    console.log(addClasses);
-    console.log(removeClasses);
 
     const classesUpdate = [];
     addClasses.forEach((classToAdd) => {
       classesUpdate.push(this.classesService
         .getByName(classToAdd.name)
         .then((currentClass) => {
-          console.log(currentClass);
           if (!currentClass) {
             return null;
           }
@@ -130,7 +126,6 @@ export class TeachersService {
           if (!currentClass) {
             return null;
           }
-          console.log(currentClass);
           return this.classesService.update(currentClass);
         })
       );
@@ -139,7 +134,6 @@ export class TeachersService {
       classesUpdate.push(this.classesService
         .getByName(classToRemove.name)
         .then((currentClass) => {
-          console.log(currentClass);
           if (!currentClass) {
             return null;
           }
@@ -152,7 +146,6 @@ export class TeachersService {
           if (!currentClass) {
             return null;
           }
-          console.log(currentClass);
           return this.classesService.update(currentClass);
         })
       );

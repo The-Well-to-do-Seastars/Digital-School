@@ -32,7 +32,6 @@ export class ClassesService {
   }
   getByName( name ): firebase.Promise<any> {
     const classData = ClassData.fromClassName(name);
-    console.log(classData);
     const query = firebase.database().ref('classes')
       .orderByChild('schoolYear').equalTo( classData.schoolYear.toString() );
     return query.once('value')
