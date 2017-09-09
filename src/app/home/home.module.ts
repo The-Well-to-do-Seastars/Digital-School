@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AddNewsComponent } from './add-news/add-news.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EditNewsComponent } from './edit-news/edit-news.component';
+import {TimeAgoPipe} from './../../../node_modules/time-ago-pipe';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { EditNewsComponent } from './edit-news/edit-news.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [HomeComponent, AddNewsComponent, EditNewsComponent],
+  declarations: [HomeComponent, AddNewsComponent, EditNewsComponent, TimeAgoPipe],
 })
 export class HomeModule { }

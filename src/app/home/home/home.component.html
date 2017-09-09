@@ -5,7 +5,12 @@
         <div class="media-body">
           <h3 class="media-heading">{{article.title}}</h3>
           <p>{{article.content}}</p>
-          <a [routerLink]="['/home', 'editnews', article.$key]" class="btn btn-default" *ngIf="user.role==='2' || user.role==='1'">Edit</a>
+          <div class="pull-right">
+            <span class="label label-default">{{article.createdOn | timeAgo}}</span>
+          </div> 
+          <a [routerLink]="['/home', 'editnews', article.$key]" 
+          class="btn btn-default" 
+          *ngIf="user.role==='2' || user.role==='1'">Edit</a>
         </div>
         <hr />
       </div>
