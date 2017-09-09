@@ -33,3 +33,18 @@ export class ClassData {
         return classData;
     }
 }
+const generateClassNames = (years, names): Array<any> => {
+    const result = [];
+    years.forEach(year => {
+      names.forEach((name) => {
+        result.push({
+          uid: year + ' ' + name.value,
+          name: ClassData.className(year, name.value)
+        });
+      });
+    });
+    return result;
+  };
+
+export { generateClassNames };
+

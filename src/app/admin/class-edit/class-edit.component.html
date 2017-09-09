@@ -1,0 +1,9 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" #classForm="ngForm">
+        <dschool-name-select 
+          [users]="classNames" [title]="'Select Class'" 
+          (change)="onClassChange($event.target.value)">
+        </dschool-name-select>
+      <button type="submit" class="btn btn-success pull-right" [disabled]="!selected">Edit</button>
+    </form>
+</div>

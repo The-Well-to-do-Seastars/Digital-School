@@ -2,7 +2,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { TeachersService } from './../../core/teachers.service';
-import { ClassData } from './../../shared/models';
+import { ClassData, generateClassNames } from './../../shared/models';
 import { possibleClasses } from './../../shared/enums';
 import { TeacherData, ShortUserData } from './../../shared/models/user';
 import { Component, OnInit } from '@angular/core';
@@ -39,20 +39,8 @@ export class TeacherDetailsComponent implements OnInit {
     return this._possibleClasses;
   }
 
-  generateClassNames(years, names): Array<string> {
-    const result = [];
-    years.forEach(year => {
-      names.forEach((name) => {
-        result.push({
-          uid: year + ' ' + name.value,
-          name: ClassData.className(year, name.value)
-        });
-      });
-    });
-    return result;
-  }
   set possibleClasses(classes) {
-    this._possibleClasses = this.generateClassNames(classes, possibleClasses());
+    this._possibleClasses = generateClassNames(classes, possibleClasses());
   }
   onCourseChange(value) {
     if (this.selectedCourse >= 0) {
@@ -68,7 +56,7 @@ export class TeacherDetailsComponent implements OnInit {
     this.teachersService.updateTeacher(this.model, this.originalModel)
     .then(() => {
       this.error = false;
-      this.toasterService.pop('success', 'Course updated!');
+      this.toasterService.pop('success', 'Teacher updated!');
       this.originalModel = TeacherData.fromDatabase( this.model );
     })
     .catch((err) => {

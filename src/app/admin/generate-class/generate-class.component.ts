@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../core/user.service';
 import { ToasterService } from 'angular2-toaster';
 import { ClassesService } from './../../core/classes.service';
@@ -17,52 +18,60 @@ import { Component, OnInit } from '@angular/core';
 export class GenerateClassComponent implements OnInit {
 
   students: Array<ShortListUserData>;
+  classNames: Array<ShortListUserData>;
   teachers: Array<ShortUserData>;
-  classData = { shoolYear: 0, classNumber: 0 };
   selectedTeacher: ShortUserData;
+  selectedClass: ShortUserData;
   error;
   possibleSchoolYears = SchoolYears.slice();
   possibleClasses = possibleClasses();
-  user: UserData;
 
   constructor(
     private studentService: StudentsService,
     private teachersService: TeachersService,
     private classesService: ClassesService,
     private toasterService: ToasterService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.teachersService
       .getAllTeachers()
-      .then( (teachers) => {
+      .then((teachers) => {
         this.teachers = teachers;
       });
-    this.user = this.userService.currentUser;
+    this.classesService
+      .getAvailableClasses()
+      .then((classNames) => {
+        this.classNames = classNames;
+      });
   }
 
   ngOnInit() {
 
   }
 
-  getStudents() {
-    this.students = this.studentService.getAvailableStudents();
+  onTeacherChange(uid: string) {
+    this.selectedTeacher = this.teachers.find((el) => el.uid === uid);
   }
 
-  onTeacherChange(uid: string) {
-    this.selectedTeacher = this.teachers[this.teachers.findIndex((el) => el.uid === uid)];
+  onClassChange(uid) {
+    this.selectedClass = this.classNames.find((el) => el.uid === uid);
+    this.students = this.studentService.getAvailableStudents();
   }
-  generate() {
+  createClass() {
     const classData = new ClassData();
     classData.leadTeacher = this.selectedTeacher;
-    classData.schoolYear = this.classData.shoolYear;
-    classData.class_name = this.classData.shoolYear;
+    const c = ClassData.fromClassName( this.selectedClass.name );
+    classData.schoolYear = c.schoolYear;
+    classData.class_name = c.class_name;
     classData.students = this.students
       .filter((student) => student.include)
       .map((student) => new ShortUserData(student));
     this.classesService.createClass(classData)
-      .then(() => {
+      .then((cls) => {
         this.error = false;
         this.toasterService.pop('success', `Class ${classData.displayName} successfully created!`);
+        this.router.navigate(['/admin/class/edit/' + cls.key ]);
       })
       .catch((err) => {
         this.error = err.message;

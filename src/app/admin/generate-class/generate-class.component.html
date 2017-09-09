@@ -1,13 +1,16 @@
-<dschool-unauthorized [show]="user.role!=2"></dschool-unauthorized>
 <div class="alert alert-danger" [hidden]="!error">
   {{error}}
 </div>
-<form class="container" (ngSubmit)="getStudents()" *ngIf="user.role==2">
+<form class="container" (ngSubmit)="createClass()">
+  <div class="row">
+    <dschool-name-select [users]="classNames" [title]="'Class'" (change)="onClassChange($event.target.value)">
+    </dschool-name-select>
+  </div>
   <div class="row">
     <dschool-name-select [users]="teachers" [title]="'Class Master'" (change)="onTeacherChange($event.target.value)">
     </dschool-name-select>
   </div>
-  <div class="row" *ngIf="!!selectedTeacher">
+  <!-- <div class="row" *ngIf="!!selectedTeacher">
     <div class="form-group col-sm-6">
       <label for="shoolYear">Year</label>
       <select class="form-control" id="shoolYear" required [(ngModel)]="classData.shoolYear" name="shoolYear">
@@ -25,9 +28,9 @@
     <div class="form-group">
       <button class="btn btn-success pull-right" (click)="getStudents()">Get Students</button>
     </div>
-  </div>
-  <dschool-list-class *ngIf="!!selectedTeacher" class="row" [students]="students" [type]="'short'"></dschool-list-class>
+  </div> -->
+  <dschool-list-class *ngIf="!!selectedTeacher && !!selectedClass" class="row" [students]="students" [type]="'short'"></dschool-list-class>
   <div class="form-group row" *ngIf="!!students && !!students.length">
-    <button class="btn btn-success pull-right" (click)="generate()">Generate</button>
+    <button type="submit" class="btn btn-success pull-right">Create</button>
   </div>
 </form>

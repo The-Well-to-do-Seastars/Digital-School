@@ -11,6 +11,8 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { TeacherEditComponent } from './teacher-edit/teacher-edit.component';
 import { TeacherDetailsComponent } from './teacher-details/teacher-details.component';
+import { ClassDetailsComponent } from './class-details/class-details.component';
+import { ClassEditComponent } from './class-edit/class-edit.component';
 
 @NgModule({
   imports: [
@@ -26,7 +28,9 @@ import { TeacherDetailsComponent } from './teacher-details/teacher-details.compo
     EditCourseComponent,
     CourseDetailsComponent,
     TeacherEditComponent,
-    TeacherDetailsComponent
+    TeacherDetailsComponent,
+    ClassDetailsComponent,
+    ClassEditComponent
   ]
 })
 export class AdminModule { }
