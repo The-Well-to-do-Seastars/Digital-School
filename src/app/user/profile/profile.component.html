@@ -37,7 +37,7 @@
         </select>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="form-group col-sm-6" *ngIf="model.role==0">
         <label for="shoolYear">Year</label>
         <select class="form-control" id="shoolYear" required [(ngModel)]="model.shoolYear" name="shoolYear" #shoolYear="ngModel">
@@ -51,7 +51,7 @@
             <option *ngFor="let number of possibleClasses" [value]="number.value">{{number.name}}</option>
         </select>
       </div>
-    </div>
+    </div> -->
 
     <button type="submit" class="btn btn-success" [disabled]="!profileForm.form.valid">Submit</button>
 

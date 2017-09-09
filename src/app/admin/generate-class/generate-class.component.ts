@@ -45,7 +45,7 @@ export class GenerateClassComponent implements OnInit {
   }
 
   getStudents() {
-    this.students = this.studentService.getStudentsFromClass(this.classData.shoolYear, this.classData.classNumber);
+    this.students = this.studentService.getAvailableStudents();
   }
 
   onTeacherChange(uid: string) {
