@@ -1,3 +1,5 @@
+import { UserService } from './../../core/user.service';
+import { UserData } from './../../shared/models/user';
 import { element } from 'protractor';
 import { NewsArticle } from './../../shared/models/news-article';
 import { NewsService } from './../../core/news.service';
@@ -10,22 +12,24 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  public user: UserData;
+  public news: NewsArticle[];
   private newsService: NewsService;
-  public news: FirebaseListObservable<any[]>;
-  public tnews: NewsArticle[];
 
-  constructor(newsService: NewsService) {
+  private userService: UserService;
+
+  constructor(newsService: NewsService, userService: UserService) {
     this.newsService = newsService;
+    this.userService = userService;
   }
 
   ngOnInit() {
-    this.tnews = [];
-    this.news = this.newsService.getAll();
+    this.user = this.userService.currentUser;
+    this.news = [];
     this.newsService.getAll().subscribe((snapshot) => {
       snapshot.forEach(element => {
-        this.tnews.push(element);
+        this.news.push(element);
       });
     });
-    console.log(this.tnews);
   }
 }
