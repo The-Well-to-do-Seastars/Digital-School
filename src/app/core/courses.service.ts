@@ -61,7 +61,9 @@ export class CoursesService {
                 .then( (dbTeacher) => {
                     if (!dbTeacher.courses || dbTeacher.courses.findIndex( el => el.uid === model.uid ) === -1 ) {
                         dbTeacher.courses = dbTeacher.courses || [];
-                        dbTeacher.courses.push( new ShortUserData( model ) );
+                        const courseData: any = new ShortUserData( model );
+                        courseData.schoolYears = model.schoolYears;
+                        dbTeacher.courses.push( courseData );
                     }
                     return dbTeacher;
                 })

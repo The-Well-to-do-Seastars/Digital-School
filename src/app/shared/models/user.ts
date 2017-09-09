@@ -1,5 +1,5 @@
 import { Roles, Classes } from '../enums';
-import { isArray } from './../utils/isArray';
+import { isArray, copyObject } from './../utils';
 export class UserData {
   public firstName: string;
   public lastName: string;
@@ -67,13 +67,18 @@ export class ShortListUserData extends ShortUserData {
     this.include = includeDefault;
   }
 }
+
+
 export class TeacherData extends UserData {
-  courses: Array<ShortUserData>;
+  courses: Array<ShortUserData> | any;
   constructor() {
     super();
     this.courses = [];
   }
 
+  static fromDatabase(obj): TeacherData | any {
+    return copyObject(obj, new TeacherData());
+  }
   static fromModel(model, target?: TeacherData): TeacherData {
     const teacher = target || new TeacherData();
     for (const prop in teacher) {

@@ -9,6 +9,8 @@ import { AdminComponent } from './admin.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { TeacherEditComponent } from './teacher-edit/teacher-edit.component';
+import { TeacherDetailsComponent } from './teacher-details/teacher-details.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,14 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     FormsModule,
     SharedModule
   ],
-  declarations: [AdminComponent, GenerateClassComponent, CreateCourseComponent, EditCourseComponent, CourseDetailsComponent]
+  declarations: [
+    AdminComponent,
+    GenerateClassComponent,
+    CreateCourseComponent,
+    EditCourseComponent,
+    CourseDetailsComponent,
+    TeacherEditComponent,
+    TeacherDetailsComponent
+  ]
 })
 export class AdminModule { }

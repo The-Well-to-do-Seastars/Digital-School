@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/home']">{{schoolName}}</a>
         </div>
-        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin"> 
+        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Classes
                         <span class="caret"></span></a>
@@ -12,16 +12,25 @@
                 </ul>
             </li>
         </ul>
-        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin"> 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Courses
+        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Courses
                             <span class="caret"></span></a>
-                    <ul class="dropdown-menu navbar-inverse">
-                            <li><a [routerLink]="['/admin/course/create']">CREATE</a></li>
-                            <li><a [routerLink]="['/admin/course/edit']">EDIT</a></li>
-                        </ul>
-                </li>
-            </ul>
+                <ul class="dropdown-menu navbar-inverse">
+                    <li><a [routerLink]="['/admin/course/create']">CREATE</a></li>
+                    <li><a [routerLink]="['/admin/course/edit']">EDIT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav" *ngIf="userService.currentUser.role===admin">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teachers
+                            <span class="caret"></span></a>
+                <ul class="dropdown-menu navbar-inverse">
+                    <li><a [routerLink]="['/admin/teacher/edit']">EDIT</a></li>
+                </ul>
+            </li>
+        </ul>
         <dschool-usermenu class="navbar navbar-nav navbar-right"></dschool-usermenu>
     </div>
 </nav>

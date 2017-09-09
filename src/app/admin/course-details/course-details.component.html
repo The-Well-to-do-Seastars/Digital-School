@@ -2,7 +2,7 @@
   <div class="alert alert-danger" [hidden]="!error">
     {{error}}
   </div>
-  <form (ngSubmit)="onSubmit()" #editClassForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #editCourseForm="ngForm">
     <div class="row">
       <div class="form-group name-group">
         <label for="name">Course Name</label>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="row">
-      <button type="submit" class="btn btn-success pull-right" [disabled]="!editClassForm.form.valid">Update</button>
+      <button type="submit" class="btn btn-success pull-right" [disabled]="!editCourseForm.form.valid">Update</button>
     </div>
   </form>
 </div>

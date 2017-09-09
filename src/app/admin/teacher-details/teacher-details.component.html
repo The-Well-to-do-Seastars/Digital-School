@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="form-group name-group">
+        <label for="name">Teacher Name</label>
+        <input type="text" class="form-control" id="name" [value]="model.displayName" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <dschool-name-select [title]="'Course name'" [users]="model.courses" (change)="onCourseChange($event.target.value)"></dschool-name-select>
+    </div>
+    <div class="row" *ngIf="selectedCourse >= 0">
+      <div class="form-group name-group">
+        <dschool-multy-select [choices]="possibleClasses" [selection]="selectedClasses" [title]="'Classes'"></dschool-multy-select>
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-success pull-right">Update</button>
+    </div>
+  </form>
+</div>
