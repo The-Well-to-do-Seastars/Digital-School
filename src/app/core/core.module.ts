@@ -1,3 +1,4 @@
+import { TeacherGuardService } from './guards/teacher-guard.service';
 import { CoursesService } from './courses.service';
 import { AdminGuardService } from './guards/admin-guard.service';
 import { NewsService } from './news.service';
@@ -25,6 +26,7 @@ import { environment } from '../../environments/environment';
     ClassesService,
     StudentsService,
     AdminGuardService,
+    TeacherGuardService,
     CoursesService,
     NewsService,
     TeachersService  ]

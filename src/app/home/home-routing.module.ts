@@ -1,3 +1,4 @@
+import { TeacherGuardService } from './../core/guards/teacher-guard.service';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 import { AddNewsComponent } from './add-news/add-news.component';
 import { HomeComponent } from './home/home.component';
@@ -6,8 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'addnews', component: AddNewsComponent },
-  { path: 'editnews/:id', component: EditNewsComponent }
+  { path: 'addnews', component: AddNewsComponent, canActivate: [TeacherGuardService] },
+  { path: 'editnews/:id', component: EditNewsComponent, canActivate: [TeacherGuardService] }
 ];
 
 @NgModule({
