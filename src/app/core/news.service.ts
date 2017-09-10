@@ -12,8 +12,15 @@ export class NewsService {
     return this.afData.list('news/').push(model);
   }
 
-  getAll(): FirebaseListObservable<any> {
-    return this.afData.list('news/');
+  getAll(): any {
+    const news = [];
+    this.afData.list('news/').subscribe((snapshot) => {
+      snapshot.forEach((element) => {
+        news.push(element);
+      });
+    });
+
+    return news;
   }
 
   getById(id: string): NewsArticle {
