@@ -1,4 +1,8 @@
-#side-msgs {
-    display: inline-block;
-    vertical-align: top;
+#msgs-inbox {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#msgs-inbox section {
+    margin: 15px 0 15px 0;
 }

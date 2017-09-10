@@ -2,19 +2,38 @@
   <app-message  [message]="myMessage"></app-message>
   <button (click)="remove(myMessage)">Remove</button>
 </div> -->
-<div>
-  <!-- <aside id="side-msgs"> -->
-    <aside class="d-inline-block">
-    <section>
-      <button>NEW MESSAGE</button>
-    </section>
-    <section *ngFor="let myMessage of messages">
-        <!-- <a href="/about">ABOUT</a> -->
-      <span>{{myMessage.title}} - {{myMessage.date}}</span>
-    </section>
-  </aside>
-    <app-message class="d-inline-block">
-
-    </app-message>
+<div class="container-fluid row bg-warning">
+  <div class="col-md-3" id="msgs-inbox">
+      <section>
+          <button class="btn btn-default">NEW MESSAGE</button>
+      </section>
+      <div *ngFor="let myMessage of messages" class="list-group">
+          <!-- <li>{{myMessage.title}} - {{myMessage.date}}</li> -->
+          <button (click)="getMsg(myMessage.id)" class="list-group-item">{{myMessage.title}} - {{myMessage.date}}  <span class="badge badge-default badge-pill">New</span></button>
+      </div>
+  </div>
+  <div *ngIf="shouldDisplayMsgs" class="col-md-9 bg-danger">
+      <form>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Send to:</label>
+              <input type="text" class="form-control" placeholder="Username">
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Subject:</label>
+              <input type="text" class="form-control" placeholder="Title">
+          </div>
+          <div class="form-group">
+              <label for="txt-msg">Message:</label>
+              <textarea class="form-control" rows="4" id="txt-msg"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+  </div>
+  <div *ngIf="!shouldDisplayMsgs">
+    {{currentMsg.title}}
+    {{currentMsg.content}}
+      <app-message>
+      </app-message>
+  </div>
 </div>
 

@@ -7,8 +7,10 @@ import { Component, OnInit, DoCheck } from '@angular/core';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit, DoCheck {
-
+  shouldDisplayMsgs = true;
   messages = [];
+  currentMsg = {};
+
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
@@ -21,5 +23,10 @@ export class InboxComponent implements OnInit, DoCheck {
 
   remove(msg) {
     this.messageService.remove(msg);
+  }
+
+  getMsg(id) {
+    this.shouldDisplayMsgs = false;
+    this.currentMsg = this.messageService.showMsg(id);
   }
 }
