@@ -29,10 +29,10 @@ export class MessageService {
   }
 
   remove(msg) {
-    this.messages = this.messages.filter(x => x.title !== msg.title);
+    this.messages = this.messages.filter(x => x.id !== msg.id);
   }
 
-  showMsg(id) {
+  getMsg(id) {
     return this.messages.find(x => x.id === id);
   }
 }

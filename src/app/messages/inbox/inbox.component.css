@@ -6,3 +6,11 @@
 #msgs-inbox section {
     margin: 15px 0 15px 0;
 }
+
+.display-msg{
+    margin: 10px 0 10px 0;
+    padding: 3px;
+    border: 1px solid grey;
+    border-radius: 4px;
+    background-color: white;
+}

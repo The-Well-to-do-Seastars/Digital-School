@@ -5,15 +5,15 @@
 <div class="container-fluid row bg-warning">
   <div class="col-md-3" id="msgs-inbox">
       <section>
-          <button class="btn btn-default">NEW MESSAGE</button>
+          <button (click)="newMsg()" class="btn btn-default">NEW MESSAGE</button>
       </section>
       <div *ngFor="let myMessage of messages" class="list-group">
-          <!-- <li>{{myMessage.title}} - {{myMessage.date}}</li> -->
           <button (click)="getMsg(myMessage.id)" class="list-group-item">{{myMessage.title}} - {{myMessage.date}}  <span class="badge badge-default badge-pill">New</span></button>
       </div>
   </div>
-  <div *ngIf="shouldDisplayMsgs" class="col-md-9 bg-danger">
-      <form>
+  <div class="col-md-9 bg-danger">
+      <!-- <app-message></app-message> -->
+      <form *ngIf="shouldDisplayNewMsg"> 
           <div class="form-group">
               <label for="exampleInputEmail1">Send to:</label>
               <input type="text" class="form-control" placeholder="Username">
@@ -27,13 +27,19 @@
               <textarea class="form-control" rows="4" id="txt-msg"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send</button>
-      </form>
-  </div>
-  <div *ngIf="!shouldDisplayMsgs">
-    {{currentMsg.title}}
-    {{currentMsg.content}}
-      <app-message>
-      </app-message>
+  </form>
+  <div *ngIf="!shouldDisplayNewMsg"> 
+          <div>
+              <div class="display-msg" id="display-msg-title"><span class="h3">{{currentMsg.title}}</span> - <em class="text-muted">{{currentMsg.date}}</em></div>
+          </div>
+          <div>
+              <div class="display-msg" id="display-msg-author">{{currentMsg.author}}:</div>
+          </div>
+          <div>
+              <div class="display-msg" id="display-msg">{{currentMsg.content}}</div>
+          </div>
+          <button (click)="remove(currentMsg)" type="submit">Delete</button>
+    </div>
   </div>
 </div>
 

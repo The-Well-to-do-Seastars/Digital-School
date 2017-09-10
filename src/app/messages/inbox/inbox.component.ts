@@ -7,7 +7,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit, DoCheck {
-  shouldDisplayMsgs = true;
+  shouldDisplayNewMsg = true;
   messages = [];
   currentMsg = {};
 
@@ -22,11 +22,16 @@ export class InboxComponent implements OnInit, DoCheck {
   }
 
   remove(msg) {
+    this.shouldDisplayNewMsg = true;
     this.messageService.remove(msg);
   }
 
   getMsg(id) {
-    this.shouldDisplayMsgs = false;
-    this.currentMsg = this.messageService.showMsg(id);
+    this.shouldDisplayNewMsg = false;
+    this.currentMsg = this.messageService.getMsg(id);
+  }
+
+  newMsg(){
+    this.shouldDisplayNewMsg = true;
   }
 }
