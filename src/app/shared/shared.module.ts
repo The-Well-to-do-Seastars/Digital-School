@@ -1,3 +1,4 @@
+import { ScheduleModule } from './schedule/schedule.module';
 import { FormsModule } from '@angular/forms';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { NgModule } from '@angular/core';
@@ -24,14 +25,16 @@ import { MultySelectLineComponent } from './multy-select-line/multy-select-line.
     ShortListRowComponent,
     NameSelectComponent,
     MultySelectComponent,
-    MultySelectLineComponent ],
+    MultySelectLineComponent
+  ],
   exports: [
     CommonModule,
     NgbModule,
     UnauthorizedComponent,
     ListClassComponent,
     NameSelectComponent,
-    MultySelectComponent
+    MultySelectComponent,
+    ScheduleModule
   ]
 })
 export class SharedModule { }

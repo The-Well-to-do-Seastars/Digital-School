@@ -1,0 +1,10 @@
+.schedule-column {
+    display: inline-block;
+    margin: 0px;
+    border: 1px solid #bbb;
+    width: 15%;
+}
+.title {
+    border: 1px solid #ccc;
+    text-align: center;
+}

@@ -11,7 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClassEditComponent } from './class-edit/class-edit.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'class', children: [
       { path: 'create', component: GenerateClassComponent },
       { path: 'edit', component: ClassEditComponent },
@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'teacher', children: [
     { path: 'edit', component: TeacherEditComponent },
     { path: 'edit/:uid', component: TeacherDetailsComponent },
-  ]}
+  ]},
+  { path: '**', redirectTo: '/not_found' }
 ];
 
 @NgModule({
