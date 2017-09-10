@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UnauthorizedComponent implements OnInit {
 
   @Input()
-  show: boolean;
+  show = true;
 
   constructor() { }
 

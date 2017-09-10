@@ -1,0 +1,25 @@
+.shedule-cell {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.cell-title {
+    font-size: 10px;
+    color: #ccc;
+    position: absolute;
+}
+
+select, option, input {
+    margin: 0px;
+    border: none;
+}
+select {
+    text-align-last: right;
+    width: 100%;
+}
+
+option, input {
+    direction: rtl;
+}

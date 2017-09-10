@@ -1,0 +1,6 @@
+<div class="row" *ngIf="!!model" >
+  <dschool-schedule-column *ngFor="let column of model.columns" 
+    [title]='column.title' [schedule]='column.schedule' [options]="model.options" [disabled]="model.disabled" [index]="model.columns.indexOf(column)"
+    (columnChanged)="onColumnChanged($event)">
+  </dschool-schedule-column>
+</div>

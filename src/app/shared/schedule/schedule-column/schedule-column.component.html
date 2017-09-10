@@ -1,0 +1,10 @@
+<div class="schedule-column">
+    <div class="title">
+        <strong>{{title}}</strong>
+    </div>
+    <dschool-schedule-cell *ngFor="let cell of schedule" 
+        [options]="options" [selected]="cell.selected" [title]="cell.title" [disabled]="disabled" [index]="schedule.indexOf(cell)"  
+        (onChange)="onCellChanged($event)">
+    </dschool-schedule-cell>
+
+</div>

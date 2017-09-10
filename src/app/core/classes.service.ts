@@ -1,3 +1,4 @@
+import { Schedule } from './../shared/models/schedule';
 import { StudentsService } from './students.service';
 import { TeachersService } from './teachers.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -26,7 +27,18 @@ export class ClassesService {
     });
     this.subscriptions.push(newSubscription);
   }
-
+  getClassById(uid): firebase.Promise<any> {
+    const query = firebase.database().ref('classes').orderByKey().equalTo(uid);
+    return query.once('value')
+      .then((snapshot) => {
+        let classData;
+        snapshot.forEach(child => {
+          classData = child.val();
+          classData.uid = child.key;
+        });
+        return Promise.resolve(classData);
+      });
+  }
   createClass(model) {
     const className = ClassData.className(model.schoolYear, model.class_name);
     const query = firebase.database().ref('users').orderByChild('role').equalTo(Roles.teacher.toString());
@@ -76,7 +88,7 @@ export class ClassesService {
             })
           );
         });
-        return Promise.all( [
+        return Promise.all([
           this.afData.list('classes/').push(model),
           Promise.all(studentPromises)
         ]);
@@ -143,6 +155,56 @@ export class ClassesService {
       })
       .catch(err => {
         return Promise.reject(err);
+      });
+  }
+
+  private getTeacherById(uid): firebase.Promise<any> {
+    return firebase.database().ref('users')
+      .orderByChild('role').equalTo(Roles.teacher.toString())
+      .once('value')
+      .then((snapshot) => {
+        let teacher;
+        snapshot.forEach(child => {
+          if (child.key === uid) {
+            teacher = child.val();
+            teacher.uid = child.key;
+          }
+        });
+        return Promise.resolve(teacher);
+      });
+  }
+  updateClassSchedule(model, oldClass, newClass, changeAt): firebase.Promise<any> {
+    const newTeacher = newClass.selected ? newClass.selected.teacher : null;
+    const oldTeacher = oldClass.selected ? oldClass.selected.teacher : null;
+    let teachersUpdates = [];
+    let oldTeacherPromise = null;
+    if (oldTeacher) {
+      oldTeacherPromise = this.getTeacherById(oldTeacher.uid);
+    }
+    let newTeacherPromise = null;
+    if (newTeacher) {
+      newTeacherPromise = this.getTeacherById(newTeacher.uid);
+    }
+    return Promise.all([oldTeacherPromise, newTeacherPromise])
+      .then(([oldT, newT]) => {
+        teachersUpdates = [];
+        if (oldT) {
+          oldT.schedule = oldT.schedule || new Schedule();
+          oldT.schedule.columns[changeAt.col].schedule[changeAt.col].selected = null;
+          teachersUpdates.push(this.afData.list('/users').update(oldT.uid, oldT));
+        }
+        if (newT) {
+          newT.schedule = newT.schedule || new Schedule();
+          const updatedClass = {
+            name: ClassData.className(model.schoolYear, model.class_name),
+            uid: model.uid,
+            course: { name: newClass.selected.name, uid: newClass.selected.uid }
+          };
+          newT.schedule.columns[changeAt.col].schedule[changeAt.col].selected = updatedClass;
+          teachersUpdates.push(this.afData.list('/users').update( newT.uid, newT ));
+        }
+        const classUpdate = this.update(model);
+        return Promise.all([classUpdate, Promise.all(teachersUpdates)]);
       });
   }
 }

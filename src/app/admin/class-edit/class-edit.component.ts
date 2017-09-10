@@ -23,8 +23,8 @@ export class ClassEditComponent implements OnInit {
 
   ngOnInit() {
   }
-  onClassChange( course ) {
-    this.selected = course;
+  onClassChange( uid ) {
+    this.selected = uid;
   }
 
   onSubmit() {

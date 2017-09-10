@@ -1,3 +1,5 @@
+import { ScheduleTableComponent } from './shared/schedule/schedule-table/schedule-table.component';
+import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { AdminGuardService } from './core/guards/admin-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,22 +14,28 @@ const routes: Routes = [
     loadChildren: './user/user.module#UserModule'
   },
   {
-    path: 'not-found',
+    path: 'not_found',
     component: NotfoundComponent
   },
   {
     path: 'home',
     loadChildren: './home/home.module#HomeModule'
   },
-  { path: 'admin',
+  {
+    path: 'admin',
     loadChildren: './admin/admin.module.ts#AdminModule',
     canActivate: [AdminGuardService],
     canActivateChild: [AdminGuardService]
-  }
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
+  },
+  { path: '**', redirectTo: '/not_found' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot( routes )],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,8 @@
+<div class="shedule-cell">
+  <span class="cell-title">{{title}}</span>
+  <select *ngIf="!disabled" (change)="selectionChanged($event.target.value)">
+    <option value="null" [selected]="!selected || !selected.name"></option>
+    <option *ngFor="let option of options" [selected]="!!selected && option.name === selected.name" [value]="option.uid">{{option.name}}</option>
+  </select>
+  <input *ngIf="disabled" [value]="selected.name||''">
+</div>
