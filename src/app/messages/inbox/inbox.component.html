@@ -1,4 +1,20 @@
-<div *ngFor="let myMessage of messages">
+<!-- <div *ngFor="let myMessage of messages">
   <app-message  [message]="myMessage"></app-message>
   <button (click)="remove(myMessage)">Remove</button>
+</div> -->
+<div>
+  <!-- <aside id="side-msgs"> -->
+    <aside class="d-inline-block">
+    <section>
+      <button>NEW MESSAGE</button>
+    </section>
+    <section *ngFor="let myMessage of messages">
+        <!-- <a href="/about">ABOUT</a> -->
+      <span>{{myMessage.title}} - {{myMessage.date}}</span>
+    </section>
+  </aside>
+    <app-message class="d-inline-block">
+
+    </app-message>
 </div>
+

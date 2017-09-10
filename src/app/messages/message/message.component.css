@@ -1,0 +1,10 @@
+#txt-area {
+    font-size: 16px;
+    font-family: Verdana;
+    height: 300px;
+    overflow-y: scroll;
+    border: 1px solid black;
+    outline: none;
+    /* width: 500px;
+    display: inline-block; */
+}
