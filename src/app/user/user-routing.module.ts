@@ -1,3 +1,4 @@
+import { UserScheduleComponent } from './user-schedule/user-schedule.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -8,8 +9,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile',
-    component: ProfileComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'schedule/:role',
+    component: UserScheduleComponent
+  },
   { path: '**', redirectTo: '/not_found' }
 ];
 

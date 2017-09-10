@@ -1,0 +1,4 @@
+<div class="alert alert-danger" [hidden]="!error">
+  {{error}}
+</div>
+<dschool-schedule-table [model]="schedule" *ngIf="!error" ></dschool-schedule-table>

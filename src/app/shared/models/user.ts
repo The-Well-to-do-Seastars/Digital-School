@@ -17,7 +17,7 @@ export class UserData {
     this.firstName = '';
     this.lastName = '';
     this.addmissionYear = new Date().getFullYear();
-    this.role = Roles.student;
+    this.role = -1;
   }
 
   get displayName(): string {

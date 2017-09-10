@@ -29,7 +29,7 @@ export class ClassDetailsComponent implements OnInit {
       .getClassById(classUid)
       .then((classData) => {
         this.model = classData;
-        this.schedule = new Schedule(this.model);
+        this.schedule = new Schedule(this.model );
         this.originalSchedule = copyObject(this.schedule);
       });
 

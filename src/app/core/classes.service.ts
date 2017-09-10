@@ -19,13 +19,24 @@ export class ClassesService {
     private studentsService: StudentsService
   ) { }
 
-  getClass(schoolYear: number, classNumber: Classes) {
-    const year = GetSchoolYear(schoolYear);
-    const classData = this.afData.list('classes/', { query: { orderByChild: 'class', equalTo: `${year}${classNumber}` } });
-    const newSubscription = classData.subscribe((snapshot) => {
-      return ClassData.fromModel(snapshot[0]);
-    });
-    this.subscriptions.push(newSubscription);
+  getClassByStudent(student): firebase.Promise<any> {
+    return this.studentsService
+      .getStudentById(student.uid)
+      .then((dbStudent) => {
+        const query = firebase.database().ref('classes').orderByChild('schoolYear').equalTo(dbStudent.shoolYear);
+        return query.once('value')
+          .then((snapshot) => {
+            let classData;
+            snapshot.forEach(child => {
+              const childData = child.val();
+              if (childData.class_name === dbStudent.class_number) {
+                classData = childData;
+                classData.uid = child.key;
+              }
+            });
+            return Promise.resolve(classData);
+          });
+      });
   }
   getClassById(uid): firebase.Promise<any> {
     const query = firebase.database().ref('classes').orderByKey().equalTo(uid);
@@ -201,7 +212,7 @@ export class ClassesService {
             course: { name: newClass.selected.name, uid: newClass.selected.uid }
           };
           newT.schedule.columns[changeAt.col].schedule[changeAt.col].selected = updatedClass;
-          teachersUpdates.push(this.afData.list('/users').update( newT.uid, newT ));
+          teachersUpdates.push(this.afData.list('/users').update(newT.uid, newT));
         }
         const classUpdate = this.update(model);
         return Promise.all([classUpdate, Promise.all(teachersUpdates)]);

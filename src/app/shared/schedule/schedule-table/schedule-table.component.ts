@@ -10,12 +10,12 @@ export class ScheduleTableComponent implements OnInit {
 
   @Input()
   model = new Schedule();
+ 
   @Output()
   scheduleChanged = new EventEmitter<any>();
   constructor() {
    }
   ngOnInit() {
-
   }
 
   onColumnChanged( event ) {

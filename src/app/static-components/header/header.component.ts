@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   schoolName: string;
   admin: any = Roles.administrator.toString();
+  teacher = Roles.teacher.toString();
 
   constructor(
     private router: Router,

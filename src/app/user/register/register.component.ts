@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       .then( () => {
         this.error = false;
         this.toasterService.pop('success', 'Welcome' );
-        this.router.navigate(['/user/profile']);
+        this.router.navigate(['/home']);
       })
       .catch( (err) => {
         this.error = err.message;

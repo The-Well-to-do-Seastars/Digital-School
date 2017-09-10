@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserScheduleComponent } from './user-schedule/user-schedule.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserScheduleComponent
   ],
   exports: [
   ]

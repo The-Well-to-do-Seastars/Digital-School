@@ -3,6 +3,7 @@ import { UserService } from './../../core/user.service';
 import { Component, OnInit } from '@angular/core';
 import { UserData, ValueNamePair } from '../../shared/models';
 import { Classes, Roles, SchoolYears, possibleClasses } from '../../shared/enums';
+import { copyObject } from './../../shared/utils';
 
 @Component({
   selector: 'dschool-profile',
@@ -40,7 +41,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.model = this.userService.currentUser;
+    this.model = copyObject( this.userService.currentUser );
   }
 
 

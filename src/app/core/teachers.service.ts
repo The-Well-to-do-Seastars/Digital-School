@@ -38,14 +38,18 @@ export class TeachersService {
       });
   }
 
-  getById(uid): firebase.Promise<any> {
+  getById(uid, complete?): firebase.Promise<any> {
     const query = firebase.database().ref('users').orderByKey().equalTo(uid);
     return query.once('value')
       .then((snapshot) => {
         let teacher;
         snapshot.forEach(child => {
           const childData = child.val();
-          teacher = TeacherData.fromModel(childData);
+          if (complete) {
+            teacher = childData;
+          } else {
+            teacher = TeacherData.fromModel(childData);
+          }
           teacher.uid = child.key;
         });
         return Promise.resolve(teacher);

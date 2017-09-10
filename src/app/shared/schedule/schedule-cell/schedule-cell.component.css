@@ -1,6 +1,6 @@
 .shedule-cell {
     margin: 0px;
-    padding: 0px;
+    padding: 0px 5px;
     position: relative;
     border: 1px solid #ccc;
 }
@@ -22,4 +22,8 @@ select {
 
 option, input {
     direction: rtl;
+}
+
+input {
+    width: 100%;
 }
