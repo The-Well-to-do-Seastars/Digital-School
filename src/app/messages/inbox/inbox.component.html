@@ -1,0 +1,4 @@
+<div *ngFor="let myMessage of messages">
+  <app-message  [message]="myMessage"></app-message>
+  <button (click)="remove(myMessage)">Remove</button>
+</div>
