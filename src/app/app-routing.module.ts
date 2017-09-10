@@ -21,19 +21,21 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomeModule'
   },
-  { path: 'admin',
+  {
+    path: 'admin',
     loadChildren: './admin/admin.module.ts#AdminModule',
     canActivate: [AdminGuardService],
     canActivateChild: [AdminGuardService]
   },
-  { path: 'unauthorized',
-    component: UnauthorizedComponent },
-    { path: 'sc', component: ScheduleTableComponent },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
+  },
   { path: '**', redirectTo: '/not_found' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot( routes )],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

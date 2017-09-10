@@ -1,3 +1,4 @@
+import { Schedule } from './../../models/schedule';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -8,11 +9,11 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class ScheduleTableComponent implements OnInit {
 
   @Input()
-  model;
-  constructor() { }
-
+  model = new Schedule();
   @Output()
   scheduleChanged = new EventEmitter<any>();
+  constructor() {
+   }
   ngOnInit() {
 
   }

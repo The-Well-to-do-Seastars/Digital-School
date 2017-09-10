@@ -4,5 +4,6 @@ export * from './user';
 export * from './custom-types';
 export * from './class';
 export * from './course';
+export * from './schedule';
 
 
