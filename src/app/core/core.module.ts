@@ -24,8 +24,8 @@ import { environment } from '../../environments/environment';
     StudentsService,
     AdminGuardService,
     CoursesService,
-    NewsService
-  ]
+    NewsService,
+    TeachersService  ]
 })
 export class CoreModule {
 
