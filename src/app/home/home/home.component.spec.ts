@@ -10,7 +10,6 @@ import { Router, RouterModule } from '@angular/router';
 import { NewsService } from './../../core/news.service';
 import { UserService } from './../../core/user.service';
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-import { RouterLinkStubDirective, RouterOutletStubComponent } from '../../../test/router-stubs';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../../../environments/environment';
 
