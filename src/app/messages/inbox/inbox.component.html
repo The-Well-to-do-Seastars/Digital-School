@@ -2,20 +2,20 @@
   <app-message  [message]="myMessage"></app-message>
   <button (click)="remove(myMessage)">Remove</button>
 </div> -->
-<div class="container-fluid row bg-warning">
+<div class="container-fluid row">
   <div class="col-md-3" id="msgs-inbox">
       <section>
-          <button (click)="newMsg()" class="btn btn-default">NEW MESSAGE</button>
+          <button (click)="newMsg()" class="btn btn-default">SEND NEW MESSAGE</button>
       </section>
       <div *ngFor="let myMessage of messages" class="list-group">
           <button (click)="getMsg(myMessage.id)" class="list-group-item">{{myMessage.title}} - {{myMessage.date}}  <span class="badge badge-default badge-pill">New</span></button>
       </div>
   </div>
-  <div class="col-md-9 bg-danger">
+  <div class="col-md-9">
       <!-- <app-message></app-message> -->
       <form *ngIf="shouldDisplayNewMsg"> 
           <div class="form-group">
-              <label for="exampleInputEmail1">Send to:</label>
+              <label for="exampleInputEmail1">To:</label>
               <input type="text" class="form-control" placeholder="Username">
           </div>
           <div class="form-group">
@@ -36,7 +36,7 @@
               <div class="display-msg" id="display-msg-author">{{currentMsg.author}}:</div>
           </div>
           <div>
-              <div class="display-msg" id="display-msg">{{currentMsg.content}}</div>
+              <div class="display-msg lead" id="display-msg">{{currentMsg.content}}</div>
           </div>
           <button (click)="remove(currentMsg)" type="submit">Delete</button>
     </div>
