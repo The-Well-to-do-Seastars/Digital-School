@@ -1,6 +1,7 @@
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Injectable, OnInit } from '@angular/core';
 import { UserService } from './../core/user.service';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class MessageService {
@@ -15,6 +16,8 @@ export class MessageService {
     {id: 8, author: 'author3', to: 'receiver4', title: 'title4', date: '10.9.2017', content: 'dddddddd', shouldDisplay: true, isRead: false}
   ];
 
+  msgs = [];
+  receiverUser;
   currentUser;
   path;
   constructor(
@@ -23,17 +26,45 @@ export class MessageService {
       this.currentUser = this.userService.currentUser;
   }
 
-  sendMessage(model) {
-    this.path = 'messages/' + this.currentUser.uid;
-    //return this.afData.list(this.path).push(model);
+  sendMessage(model, receiverUid) {
+    this.path = 'messages';
+    return this.afData.list(this.path).push(model);
   }
 
   getCurrUserEmail() {
     return this.currentUser.email;
   }
 
+  getCurrUserUid() {
+    return this.currentUser.uid;
+  }
+
   getAllMessages() {
-    return this.messages;
+  //   const path = 'messages';
+  //   firebase.database().ref(path).once('value')
+  //   .then( (snapshot) => {
+  //   snapshot.forEach( (child) => {
+  //   const msg = child.val();
+  //   msg.uid = child.key;
+  //   this.msgs.push( msg );
+  //   });
+  // });
+  // return this.msgs;
+  return this.messages;
+  }
+
+  getReceiverUser(email, model) {
+  //   firebase.database().ref('users').once('value')
+  //   .then( (snapshot) => {
+  //   snapshot.forEach( (child) => {
+  //   const user = child.val();
+  //   this.sendMessage(model, user.uid);
+  //   // if (user.email === email) {
+  //   //   this.receiverUser = user.uid;
+  //   //   this.sendMessage(model, user.uid);
+  //   // }
+  //   });
+  // });
   }
 
   remove(msg) {
@@ -42,5 +73,5 @@ export class MessageService {
 
   getMsg(id) {
     return this.messages.find(x => x.id === id);
-  }
+}
 }

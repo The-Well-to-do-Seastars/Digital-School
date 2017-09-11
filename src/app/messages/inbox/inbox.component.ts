@@ -11,13 +11,15 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 })
 export class InboxComponent implements OnInit, DoCheck {
   shouldDisplayNewMsg = true;
-  messages = [];
+  messages;
   currentMsg = {};
   model;
 
   id: string;
   from: string;
   to: string;
+  firstName: string;
+  lastName: string;
   title: string;
   content: string;
   shouldDisplay: boolean;
@@ -42,10 +44,15 @@ export class InboxComponent implements OnInit, DoCheck {
     console.log('Title ' + this.model.title);
     console.log('Content ' + this.model.content);
     console.log('To ' + this.model.to);
+    console.log('First name ' + this.model.firstName);
+    console.log('Last name ' + this.model.lastName);
     console.log('From ' + this.model.from);
     console.log('Date ' + this.model.date);
     console.log('Display ' + this.model.shouldDisplay);
     console.log('IsReadable ' + this.model.isRead);
+
+    this.messageService.sendMessage(this.model, '');
+    //this.messageService.getReceiverUser(this.model.to, this.model);
   }
 
   remove(msg) {
@@ -58,7 +65,7 @@ export class InboxComponent implements OnInit, DoCheck {
     this.currentMsg = this.messageService.getMsg(id);
   }
 
-  newMsg(){
+  newMsg() {
     this.shouldDisplayNewMsg = true;
   }
 }
