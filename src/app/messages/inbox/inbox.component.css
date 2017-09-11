@@ -1,0 +1,19 @@
+#msgs-inbox {
+    height: 750px;
+    overflow-y: scroll;
+}
+
+#msgs-inbox section {
+    margin: 15px 0 15px 0;
+}
+
+.display-msg{
+    margin: 10px 0 10px 0;
+    padding: 3px;
+    border-bottom: 1px solid grey;
+    background-color: white;
+}
+
+#display-msg-author{
+    border: none;
+}

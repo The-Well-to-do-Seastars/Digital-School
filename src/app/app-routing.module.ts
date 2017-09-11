@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'unauthorized',
     component: UnauthorizedComponent
   },
+  {
+    path: 'inbox',
+    loadChildren: './messages/message.module#MessageModule'
+  },
   { path: '**', redirectTo: '/not_found' }
 ];
 

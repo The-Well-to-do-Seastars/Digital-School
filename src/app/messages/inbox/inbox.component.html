@@ -1,0 +1,47 @@
+<!-- <div *ngFor="let myMessage of messages">
+  <app-message  [message]="myMessage"></app-message>
+  <button (click)="remove(myMessage)">Remove</button>
+</div> -->
+<div class="container-fluid row">
+  <div class="col-md-3" id="msgs-inbox">
+      <section>
+          <button (click)="newMsg()" class="btn btn-default">SEND NEW MESSAGE</button>
+      </section>
+      <div *ngFor="let myMessage of messages" class="list-group">
+          <button (click)="getMsg(myMessage.uid)" class="list-group-item">{{myMessage.title}} - {{myMessage.date}}  <span class="badge badge-default badge-pill">New</span></button>
+      </div>
+  </div>
+  <div class="col-md-9">
+    <form *ngIf="shouldDisplayNewMsg"> 
+        <div class="form-group">
+            <!-- <label for="names">To:</label>
+            <input type="text" id="names" class="form-control" placeholder="E-mail" 
+            [(ngModel)]="to" name="email"> -->
+            <dschool-name-select [users]="users" [title]="'To:'" (change)="userChanged($event.target.value)">
+            </dschool-name-select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Subject:</label>
+            <input type="text" class="form-control" placeholder="Title"
+            [(ngModel)]="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="txt-msg">Message:</label>
+            <textarea class="form-control" rows="4" id="txt-msg" [(ngModel)]="content" name="content" required></textarea>
+        </div>
+        <button (click)="createMsg()" type="submit" class="btn btn-primary">Send</button>
+    </form>
+    <div *ngIf="!shouldDisplayNewMsg"> 
+        <div>
+            <div class="display-msg" id="display-msg-title"><span class="h3">{{currentMsg.title}}</span> - <em class="text-muted">{{currentMsg.date}}</em></div>
+        </div>
+        <div>
+            <div class="display-msg" id="display-msg-author">{{currentMsg.author}}:</div>
+        </div>
+        <div>
+            <div class="display-msg lead" id="display-msg">{{currentMsg.content}}</div>
+        </div>
+        <button (click)="remove(currentMsg)" type="submit">Delete</button>
+    </div>
+  </div>
+</div>
