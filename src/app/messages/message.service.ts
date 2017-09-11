@@ -2,6 +2,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Injectable, OnInit } from '@angular/core';
 import { UserService } from './../core/user.service';
 import * as firebase from 'firebase/app';
+import { UserData, ShortUserData } from '../shared/models';
 
 @Injectable()
 export class MessageService {
@@ -17,7 +18,7 @@ export class MessageService {
   }
 
   sendMessage(model, receiverUid) {
-    this.path = 'messages';
+    this.path = 'messages/' + model.to;
     return this.afData.list(this.path).push(model);
   }
 
@@ -30,8 +31,8 @@ export class MessageService {
   }
 
   getAllMessages(uid): firebase.Promise<any> {
-    const path = 'messages/' + uid;
-    console.log( path );
+    const path = '/messages/' + uid;
+    console.log(path);
     return firebase.database().ref(path).once('value')
       .then((snapshot) => {
         const messages = [];
@@ -40,24 +41,21 @@ export class MessageService {
           msg.uid = child.key;
           messages.push(msg);
         });
-        return Promise.resolve( messages );
+        return Promise.resolve(messages);
       });
-    // return this.msgs;
-    // return this.messages;
   }
 
-  getReceiverUser(email, model) {
-    //   firebase.database().ref('users').once('value')
-    //   .then( (snapshot) => {
-    //   snapshot.forEach( (child) => {
-    //   const user = child.val();
-    //   this.sendMessage(model, user.uid);
-    //   // if (user.email === email) {
-    //   //   this.receiverUser = user.uid;
-    //   //   this.sendMessage(model, user.uid);
-    //   // }
-    //   });
-    // });
+  getReceiverUsers(): firebase.Promise<any> {
+    return firebase.database().ref('users').once('value')
+      .then((snapshot) => {
+        const users = [];
+        snapshot.forEach((child) => {
+          const user = ShortUserData.fromModel( UserData.fromModel( child.val() ));
+          user.uid = child.key;
+          users.push( user );
+        });
+        return Promise.resolve( users );
+      });
   }
 
   remove(msg) {

@@ -1,3 +1,4 @@
+import { UserService } from './../../core/user.service';
 import { MessageData } from './../../shared/models/message';
 import { FormGroup } from '@angular/forms';
 import { ToasterService } from 'angular2-toaster';
@@ -14,7 +15,7 @@ export class InboxComponent implements OnInit, DoCheck {
   messages;
   currentMsg = {};
   model;
-
+  users;
   id: string;
   from: string;
   to: string;
@@ -27,27 +28,28 @@ export class InboxComponent implements OnInit, DoCheck {
 
   constructor(
     private messageService: MessageService,
-    private toasterService: ToasterService) {
-     }
+    private toasterService: ToasterService,
+    private userService: UserService
+  ) {
+  }
 
   ngOnInit() {
     this.messageService
-      .getAllMessages( this.messageService.getCurrUserUid() )
-      .then( (messages) => {
+      .getAllMessages(this.messageService.getCurrUserUid())
+      .then((messages) => {
         this.messages = messages;
-        console.log( messages );
+      });
+    this.messageService
+      .getReceiverUsers()
+      .then((users) => {
+        this.users = users;
       });
   }
 
   ngDoCheck() {
-    // this.messageService
-    // .getAllMessages( this.messageService.getCurrUserUid() )
-    // .then( (messages) => {
-    //   this.messages = messages;
-    // });
   }
 
- createMsg() {
+  createMsg() {
     this.from = this.messageService.getCurrUserEmail();
     this.model = new MessageData(0, this.from, this.to, this.title, this.content);
     console.log('Title ' + this.model.title);
@@ -71,10 +73,13 @@ export class InboxComponent implements OnInit, DoCheck {
 
   getMsg(uid) {
     this.shouldDisplayNewMsg = false;
-    this.currentMsg = this.messages.find( el => el.uid === uid );
+    this.currentMsg = this.messages.find(el => el.uid === uid);
   }
 
   newMsg() {
     this.shouldDisplayNewMsg = true;
+  }
+  userChanged( uid ) {
+    this.to = uid;
   }
 }
