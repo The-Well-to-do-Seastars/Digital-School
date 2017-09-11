@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { MessageService } from './message.service';
 
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ import { InboxComponent } from './inbox/inbox.component';
 @NgModule({
   imports: [
     CommonModule,
-    MessageRoutingModule
+    MessageRoutingModule,
+    FormsModule
   ],
   declarations: [ InboxComponent, MessageComponent ],
   providers: [ MessageService ],

@@ -1,3 +1,5 @@
+import { ToasterService } from 'angular2-toaster';
+import { MessageData } from './../../shared/models/message';
 import { MessageService } from './../message.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -10,7 +12,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MessageComponent {
   @Input()
   message;
-  
-  constructor() {
+
+  // model = new MessageData(0, '', '', '', '', '', true, true);
+  // error: any;
+  constructor(private toasterService: ToasterService) {
    }
+
+  //  onSubmit(){
+  //  }
 }
