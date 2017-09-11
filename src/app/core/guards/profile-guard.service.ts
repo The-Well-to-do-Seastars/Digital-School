@@ -12,7 +12,8 @@ export class ProfileGuardService {
 
   canActivate(): boolean {
     const userRole = +this.userService.currentUser.role;
-    if (userRole > 0) {
+    console.log( userRole );
+    if (userRole >= 0) {
       return true;
     } else {
       this.router.navigate( ['/unauthorized']);
