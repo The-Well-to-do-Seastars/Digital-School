@@ -3,14 +3,14 @@ import { MessageData } from './../../shared/models/message';
 import { FormGroup } from '@angular/forms';
 import { ToasterService } from 'angular2-toaster';
 import { MessageService } from './../message.service';
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'dschool-inbox',
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
-export class InboxComponent implements OnInit, DoCheck {
+export class InboxComponent implements OnInit, DoCheck, OnDestroy {
   shouldDisplayNewMsg = true;
   messages;
   currentMsg = {};
@@ -25,7 +25,7 @@ export class InboxComponent implements OnInit, DoCheck {
   content: string;
   shouldDisplay: boolean;
   isRead: boolean;
-
+subscription;
   constructor(
     private messageService: MessageService,
     private toasterService: ToasterService,
@@ -34,11 +34,14 @@ export class InboxComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.messageService
-      .getAllMessages(this.messageService.getCurrUserUid())
-      .then((messages) => {
-        this.messages = messages;
-      });
+    // this.messageService
+    //   .getAllMessages(this.messageService.getCurrUserUid())
+    //   .then((messages) => {
+    //     this.messages = messages;
+    //   });
+    this.subscription = this.messageService
+      .getAllMessages(this.userService.currentUser.uid)
+      .subscribe( (snapshot) => this.messages = snapshot );
     this.messageService
       .getReceiverUsers()
       .then((users) => {
@@ -86,5 +89,8 @@ export class InboxComponent implements OnInit, DoCheck {
   }
   userChanged(uid) {
     this.to = uid;
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -30,18 +30,19 @@ export class MessageService {
     return this.currentUser.uid;
   }
 
-  getAllMessages(uid): firebase.Promise<any> {
+  getAllMessages(uid) {
     const path = '/messages/' + uid;
-    return firebase.database().ref(path).once('value')
-      .then((snapshot) => {
-        const messages = [];
-        snapshot.forEach((child) => {
-          const msg = child.val();
-          msg.uid = child.key;
-          messages.push(msg);
-        });
-        return Promise.resolve(messages);
-      });
+    return this.afData.list(path);
+    // return firebase.database().ref(path).once('value')
+    //   .then((snapshot) => {
+    //     const messages = [];
+    //     snapshot.forEach((child) => {
+    //       const msg = child.val();
+    //       msg.uid = child.key;
+    //       messages.push(msg);
+    //     });
+    //     return Promise.resolve(messages);
+    //   });
   }
 
   getReceiverUsers(): firebase.Promise<any> {
