@@ -47,7 +47,6 @@ export class EditNewsComponent implements OnInit, OnDestroy {
           title: title,
           content: content
         });
-        console.log(this.addNewsForm);
      });
     }
 
