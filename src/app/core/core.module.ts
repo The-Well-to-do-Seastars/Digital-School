@@ -1,3 +1,5 @@
+import { ProfileGuardService } from './guards/profile-guard.service';
+import { ScheduleGuardService } from './guards/schedule-guard.service';
 import { TeacherGuardService } from './guards/teacher-guard.service';
 import { CoursesService } from './courses.service';
 import { AdminGuardService } from './guards/admin-guard.service';
@@ -19,17 +21,22 @@ import { environment } from '../../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [
-    UserService,
     AngularFireDatabase,
     AngularFireAuth,
     ToasterService,
+
+    UserService,
     ClassesService,
     StudentsService,
-    AdminGuardService,
-    TeacherGuardService,
     CoursesService,
     NewsService,
-    TeachersService  ]
+
+    TeachersService,
+    ScheduleGuardService,
+    ProfileGuardService,
+    AdminGuardService,
+    TeacherGuardService
+  ]
 })
 export class CoreModule {
 

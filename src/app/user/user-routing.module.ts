@@ -1,3 +1,5 @@
+import { ProfileGuardService } from './../core/guards/profile-guard.service';
+import { ScheduleGuardService } from './../core/guards/schedule-guard.service';
 import { UserScheduleComponent } from './user-schedule/user-schedule.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -11,11 +13,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [ProfileGuardService]
   },
   {
     path: 'schedule/:role',
-    component: UserScheduleComponent
+    component: UserScheduleComponent,
+    canActivate: [ScheduleGuardService]
   },
   { path: '**', redirectTo: '/not_found' }
 ];
