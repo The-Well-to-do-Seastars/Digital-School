@@ -14,7 +14,10 @@
     </div>
     <div class="row" *ngIf="selectedCourse >= 0">
       <div class="form-group name-group">
-        <dschool-multy-select [choices]="possibleClasses" [selection]="selectedClasses" [title]="'Classes'"></dschool-multy-select>
+        <dschool-multy-select 
+          [choices]="possibleClasses" [selection]="selectedClasses" 
+          [title]="'Classes'" [sortByName]="true">
+        </dschool-multy-select>
       </div>
     </div>
     <div class="row">
