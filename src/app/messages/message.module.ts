@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from './message.service';
 
@@ -12,7 +13,8 @@ import { InboxComponent } from './inbox/inbox.component';
   imports: [
     CommonModule,
     MessageRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   declarations: [ InboxComponent, MessageComponent ],
   providers: [ MessageService ],

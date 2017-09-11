@@ -5,7 +5,7 @@ import { MessageService } from './../message.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 
 @Component({
-  selector: 'app-inbox',
+  selector: 'dschool-inbox',
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
@@ -31,11 +31,20 @@ export class InboxComponent implements OnInit, DoCheck {
      }
 
   ngOnInit() {
-    this.messages = this.messageService.getAllMessages();
+    this.messageService
+      .getAllMessages( this.messageService.getCurrUserUid() )
+      .then( (messages) => {
+        this.messages = messages;
+        console.log( messages );
+      });
   }
 
   ngDoCheck() {
-    this.messages = this.messageService.getAllMessages();
+    // this.messageService
+    // .getAllMessages( this.messageService.getCurrUserUid() )
+    // .then( (messages) => {
+    //   this.messages = messages;
+    // });
   }
 
  createMsg() {
@@ -52,7 +61,7 @@ export class InboxComponent implements OnInit, DoCheck {
     console.log('IsReadable ' + this.model.isRead);
 
     this.messageService.sendMessage(this.model, '');
-    //this.messageService.getReceiverUser(this.model.to, this.model);
+    // this.messageService.getReceiverUser(this.model.to, this.model);
   }
 
   remove(msg) {
@@ -60,9 +69,9 @@ export class InboxComponent implements OnInit, DoCheck {
     this.messageService.remove(msg);
   }
 
-  getMsg(id) {
+  getMsg(uid) {
     this.shouldDisplayNewMsg = false;
-    this.currentMsg = this.messageService.getMsg(id);
+    this.currentMsg = this.messages.find( el => el.uid === uid );
   }
 
   newMsg() {

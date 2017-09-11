@@ -4,7 +4,7 @@ import { MessageService } from './../message.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-message',
+  selector: 'dschool-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })

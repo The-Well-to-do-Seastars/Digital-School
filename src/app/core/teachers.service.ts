@@ -71,8 +71,8 @@ export class TeachersService {
           .filter(el =>
             compareTo.findIndex((e) => e.uid === el.uid) === -1
           )
-          .map(element => {
-            const el = copyObject(element);
+          .map(elem => {
+            const el = copyObject(elem);
             el.course = new ShortUserData({
               name: course.name,
               uid: course.uid
@@ -96,8 +96,8 @@ export class TeachersService {
           .filter(el =>
             compareTo.findIndex((e) => e.uid === el.uid) === -1
           )
-          .map(element => {
-            const el = copyObject(element);
+          .map(elem => {
+            const el = copyObject(elem);
             el.course = new ShortUserData({
               name: course.name,
               uid: course.uid

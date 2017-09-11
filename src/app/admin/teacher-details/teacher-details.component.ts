@@ -17,7 +17,7 @@ export class TeacherDetailsComponent implements OnInit {
   error;
   model: TeacherData | any = new TeacherData();
   originalModel: TeacherData;
-  selectedCourse: number = -1;
+  selectedCourse = -1;
   selectedClasses: Array<string> = [];
   _possibleClasses: Array<string>;
   constructor(
