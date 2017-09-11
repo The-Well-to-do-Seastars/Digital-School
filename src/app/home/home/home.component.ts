@@ -25,11 +25,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.currentUser;
-    this.news = [];
-    this.newsService.getAll().subscribe((snapshot) => {
-      snapshot.forEach(elem => {
-        this.news.push(elem);
-      });
-    });
+    this.news = this.newsService.getAll();
   }
 }

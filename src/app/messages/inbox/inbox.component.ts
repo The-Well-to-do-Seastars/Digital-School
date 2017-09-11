@@ -52,23 +52,28 @@ export class InboxComponent implements OnInit, DoCheck {
   createMsg() {
     this.from = this.messageService.getCurrUserEmail();
     this.model = new MessageData(0, this.from, this.to, this.title, this.content);
-    console.log('Title ' + this.model.title);
-    console.log('Content ' + this.model.content);
-    console.log('To ' + this.model.to);
-    console.log('First name ' + this.model.firstName);
-    console.log('Last name ' + this.model.lastName);
-    console.log('From ' + this.model.from);
-    console.log('Date ' + this.model.date);
-    console.log('Display ' + this.model.shouldDisplay);
-    console.log('IsReadable ' + this.model.isRead);
-
-    this.messageService.sendMessage(this.model, '');
-    // this.messageService.getReceiverUser(this.model.to, this.model);
+    this.messageService
+      .sendMessage(this.model, '')
+      .then(() => {
+        this.toasterService.pop('success', 'Message successfully sent!');
+      })
+      .catch((err) => {
+        this.toasterService.pop('erro', err.message);
+      });
   }
 
   remove(msg) {
     this.shouldDisplayNewMsg = true;
-    this.messageService.remove(msg);
+    this.messageService
+      .remove(msg)
+      .then(() => {
+        this.toasterService.pop('success', 'Message successfully deleted!');
+        const index = this.messages.findIndex( message => message === msg );
+        this.messages.splice( index, 1 );
+      })
+      .catch((err) => {
+        this.toasterService.pop('erro', err.message);
+      });
   }
 
   getMsg(uid) {
@@ -79,7 +84,7 @@ export class InboxComponent implements OnInit, DoCheck {
   newMsg() {
     this.shouldDisplayNewMsg = true;
   }
-  userChanged( uid ) {
+  userChanged(uid) {
     this.to = uid;
   }
 }

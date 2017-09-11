@@ -32,7 +32,6 @@ export class MessageService {
 
   getAllMessages(uid): firebase.Promise<any> {
     const path = '/messages/' + uid;
-    console.log(path);
     return firebase.database().ref(path).once('value')
       .then((snapshot) => {
         const messages = [];
@@ -59,7 +58,8 @@ export class MessageService {
   }
 
   remove(msg) {
-    // this.messages = this.messages.filter(x => x.id !== msg.id);
+    const path = '/messages/' + msg.to;
+    return this.afData.list( path ).remove( msg.uid );
   }
 
   getMsg(id) {
