@@ -15,7 +15,7 @@ import { DebugElement } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 
 import { EditNewsComponent } from './edit-news.component';
-import { tick } from "@angular/core/testing";
+import { tick } from '@angular/core/testing';
 
 class RouterStub {
   navigateByUrl(url: string) {
@@ -84,22 +84,13 @@ fdescribe('EditNewsComponent', () => {
     expect(input).toBeTruthy();
   });
 
-  it('creates textarea with name content', () => {
-    const article = new NewsArticle();
-    spyOn(newsService, 'getById').and.returnValue(article);
-    fixture.detectChanges();
-
-    const input = de.query(By.css('textarea[name=content]')).nativeElement;
-    expect(input).toBeTruthy();
-  });
-
   it('calls news service update', () => {
     const article = new NewsArticle();
     spyOn(newsService, 'getById').and.returnValue(article);
     spyOn(newsService, 'update');
 
-    const title = new FormControl('this.article.title', Validators.required);
-    const content = new FormControl('his.article.content', Validators.required);
+    const title = new FormControl('article - title', Validators.required);
+    const content = new FormControl('article - content', Validators.required);
     this.addNewsForm = new FormGroup({
       title: title,
       content: content
@@ -108,6 +99,6 @@ fdescribe('EditNewsComponent', () => {
     fixture.whenStable().then(() => {
       component.onSubmit();
       expect(newsService.update).toHaveBeenCalled();
-  });
+    });
   });
 });
